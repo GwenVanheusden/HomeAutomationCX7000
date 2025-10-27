@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19" ClassName="CTComPlcObjDef">
-	<Instance/>
+	<Instance TmcHash="{FE0E2061-E11B-20C1-067A-8465D207D06E}">
+		<Vars VarGrpType="2" AreaNo="1">
+			<Name>PlcTask Outputs</Name>
+			<Var>
+				<Name>MAIN.bTest</Name>
+				<Type>BOOL</Type>
+			</Var>
+		</Vars>
+	</Instance>
 </TcSmItem>
