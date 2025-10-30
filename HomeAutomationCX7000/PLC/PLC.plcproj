@@ -67,6 +67,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\09-Ventilatie\GVL_Ventilatie.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\90-Visualisatie\GVL_Visualisatie.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -125,19 +129,22 @@
     <Compile Include="POUs\08-Energiemetingen\P_Watermeting.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\09-IoT\P_Sonos.TcPOU">
+    <Compile Include="POUs\09-Ventilatie\P_Ventilatie.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\100-FB%27s\FB_Dimmer.TcPOU">
+    <Compile Include="POUs\10-IoT\P_Sonos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\100-FB%27s\FB_LongMultipleClick.TcPOU">
+    <Compile Include="POUs\99-FB%27s\FB_Dimmer.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\100-FB%27s\FB_OnOffLight.TcPOU">
+    <Compile Include="POUs\99-FB%27s\FB_LongMultipleClick.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\100-FB%27s\FB_Screens.TcPOU">
+    <Compile Include="POUs\99-FB%27s\FB_OnOffLight.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\99-FB%27s\FB_Screens.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -153,7 +160,8 @@
     <Folder Include="GVLs\07-Draaipoort" />
     <Folder Include="GVLs\08-Energiemetingen" />
     <Folder Include="GVLs\90-Visualisatie" />
-    <Folder Include="POUs\100-FB%27s" />
+    <Folder Include="GVLs\09-Ventilatie" />
+    <Folder Include="POUs\99-FB%27s" />
     <Folder Include="POUs\00-MAIN" />
     <Folder Include="POUs\01-System" />
     <Folder Include="POUs\03-Verlichting" />
@@ -163,7 +171,8 @@
     <Folder Include="POUs\06-Screens" />
     <Folder Include="POUs\05-Temperaturen" />
     <Folder Include="POUs\08-Energiemetingen" />
-    <Folder Include="POUs\09-IoT" />
+    <Folder Include="POUs\10-IoT" />
+    <Folder Include="POUs\09-Ventilatie" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

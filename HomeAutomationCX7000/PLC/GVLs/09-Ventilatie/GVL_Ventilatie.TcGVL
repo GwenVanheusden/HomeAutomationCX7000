@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Ventilatie" Id="{a367bac8-a5e7-4789-ac08-164e37206a9c}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	iVentilatie		AT %Q*	: INT;
+	
+	bVentUp					: BOOL;
+	bVentDown				: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

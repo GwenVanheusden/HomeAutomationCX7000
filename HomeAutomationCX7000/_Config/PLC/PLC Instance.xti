@@ -75,6 +75,229 @@
 				<Link VarA="PlcTask Retains^GVL_NovRam.nDimmValue_J1" VarB="Retains^GVL_NovRam.nDimmValue_J1_[851]" AutoLink="true" PeerAutoLink="true"/>
 				<Link VarA="PlcTask Retains^GVL_NovRam.nDimmValue_J2" VarB="Retains^GVL_NovRam.nDimmValue_J2_[851]" AutoLink="true" PeerAutoLink="true"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Boiler en poort (EL2809)">
+				<Link VarA="PlcTask Outputs^GVL_Boiler.bRelaisBoiler" VarB="Channel 1^GVL_Boiler.bRelaisBoiler" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Draaipoort.bDraaipoortVoetgangerOpenDicht" VarB="Channel 3^GVL_Draaipoort.bDraaipoortVoetgangerOpenDicht" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Draaipoort.bDraaipoortVolledigOpenDicht" VarB="Channel 2^GVL_Draaipoort.bDraaipoortVolledigOpenDicht" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^DK01-02-03-04 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK01x1" VarB="Channel 1^GVL_Drukknoppen.bDK01x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK01x2" VarB="Channel 2^GVL_Drukknoppen.bDK01x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK01x3" VarB="Channel 3^GVL_Drukknoppen.bDK01x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK01x4" VarB="Channel 4^GVL_Drukknoppen.bDK01x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK01x5" VarB="Channel 5^GVL_Drukknoppen.bDK01x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK01x6" VarB="Channel 6^GVL_Drukknoppen.bDK01x6" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK02x1" VarB="Channel 7^GVL_Drukknoppen.bDK02x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK03x1" VarB="Channel 9^GVL_Drukknoppen.bDK03x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK03x2" VarB="Channel 10^GVL_Drukknoppen.bDK03x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK03x3" VarB="Channel 11^GVL_Drukknoppen.bDK03x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK03x4" VarB="Channel 12^GVL_Drukknoppen.bDK03x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK04x1" VarB="Channel 13^GVL_Drukknoppen.bDK04x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK04x2" VarB="Channel 14^GVL_Drukknoppen.bDK04x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK04x3" VarB="Channel 15^GVL_Drukknoppen.bDK04x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK04x4" VarB="Channel 16^GVL_Drukknoppen.bDK04x4" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^DK04-05-06-07 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK04x5" VarB="Channel 1^GVL_Drukknoppen.bDK04x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK04x6" VarB="Channel 2^GVL_Drukknoppen.bDK04x6" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK05x1" VarB="Channel 3^GVL_Drukknoppen.bDK05x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK05x2" VarB="Channel 4^GVL_Drukknoppen.bDK05x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK05x3" VarB="Channel 5^GVL_Drukknoppen.bDK05x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK05x4" VarB="Channel 6^GVL_Drukknoppen.bDK05x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK06x1" VarB="Channel 7^GVL_Drukknoppen.bDK06x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK06x2" VarB="Channel 8^GVL_Drukknoppen.bDK06x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK06x3" VarB="Channel 9^GVL_Drukknoppen.bDK06x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK06x4" VarB="Channel 10^GVL_Drukknoppen.bDK06x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK07x1" VarB="Channel 11^GVL_Drukknoppen.bDK07x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK07x2" VarB="Channel 12^GVL_Drukknoppen.bDK07x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK07x3" VarB="Channel 13^GVL_Drukknoppen.bDK07x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK07x4" VarB="Channel 14^GVL_Drukknoppen.bDK07x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK07x5" VarB="Channel 15^GVL_Drukknoppen.bDK07x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK07x6" VarB="Channel 16^GVL_Drukknoppen.bDK07x6" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^DK08-11-12 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK08x1" VarB="Channel 1^GVL_Drukknoppen.bDK08x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK08x2" VarB="Channel 2^GVL_Drukknoppen.bDK08x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK08x3" VarB="Channel 3^GVL_Drukknoppen.bDK08x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK08x4" VarB="Channel 4^GVL_Drukknoppen.bDK08x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK11x1" VarB="Channel 9^GVL_Drukknoppen.bDK11x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK11x2" VarB="Channel 10^GVL_Drukknoppen.bDK11x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK11x3" VarB="Channel 11^GVL_Drukknoppen.bDK11x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK11x4" VarB="Channel 12^GVL_Drukknoppen.bDK11x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK12x1" VarB="Channel 13^GVL_Drukknoppen.bDK12x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK12x2" VarB="Channel 14^GVL_Drukknoppen.bDK12x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK12x3" VarB="Channel 15^GVL_Drukknoppen.bDK12x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK12x4" VarB="Channel 16^GVL_Drukknoppen.bDK12x4" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^DK09-10 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK09x1" VarB="Channel 1^GVL_Drukknoppen.bDK09x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK09x2" VarB="Channel 2^GVL_Drukknoppen.bDK09x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK09x3" VarB="Channel 3^GVL_Drukknoppen.bDK09x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK09x4" VarB="Channel 4^GVL_Drukknoppen.bDK09x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK09x5" VarB="Channel 5^GVL_Drukknoppen.bDK09x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK09x6" VarB="Channel 6^GVL_Drukknoppen.bDK09x6" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK10x1" VarB="Channel 7^GVL_Drukknoppen.bDK10x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK10x2" VarB="Channel 8^GVL_Drukknoppen.bDK10x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK10x3" VarB="Channel 9^GVL_Drukknoppen.bDK10x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK10x4" VarB="Channel 10^GVL_Drukknoppen.bDK10x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK10x5" VarB="Channel 11^GVL_Drukknoppen.bDK10x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK10x6" VarB="Channel 12^GVL_Drukknoppen.bDK10x6" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^DK13-14-15-16 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK13x1" VarB="Channel 1^GVL_Drukknoppen.bDK13x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK13x2" VarB="Channel 2^GVL_Drukknoppen.bDK13x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK13x3" VarB="Channel 3^GVL_Drukknoppen.bDK13x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK13x4" VarB="Channel 4^GVL_Drukknoppen.bDK13x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK14x1" VarB="Channel 5^GVL_Drukknoppen.bDK14x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK14x2" VarB="Channel 6^GVL_Drukknoppen.bDK14x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK14x3" VarB="Channel 7^GVL_Drukknoppen.bDK14x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK14x4" VarB="Channel 8^GVL_Drukknoppen.bDK14x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK15x1" VarB="Channel 9^GVL_Drukknoppen.bDK15x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK15x2" VarB="Channel 10^GVL_Drukknoppen.bDK15x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK15x3" VarB="Channel 11^GVL_Drukknoppen.bDK15x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK15x4" VarB="Channel 12^GVL_Drukknoppen.bDK15x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK16x1" VarB="Channel 13^GVL_Drukknoppen.bDK16x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK16x2" VarB="Channel 14^GVL_Drukknoppen.bDK16x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK16x3" VarB="Channel 15^GVL_Drukknoppen.bDK16x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK16x4" VarB="Channel 16^GVL_Drukknoppen.bDK16x4" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Lights J-K (EL2809)">
+				<Link VarA="PlcTask Outputs^GVL_Drukknoppen.bMeldingDK02x1" VarB="Channel 15^GVL_Drukknoppen.bMeldingDK02x1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Drukknoppen.bMeldingDK11x3" VarB="Channel 16^GVL_Drukknoppen.bMeldingDK11x3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I1" VarB="Channel 1^GVL_Relais.bRelaisLight_I1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I2" VarB="Channel 2^GVL_Relais.bRelaisLight_I2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I3" VarB="Channel 3^GVL_Relais.bRelaisLight_I3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I4" VarB="Channel 4^GVL_Relais.bRelaisLight_I4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I5" VarB="Channel 5^GVL_Relais.bRelaisLight_I5" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I6" VarB="Channel 6^GVL_Relais.bRelaisLight_I6" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I7" VarB="Channel 7^GVL_Relais.bRelaisLight_I7" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_I8" VarB="Channel 8^GVL_Relais.bRelaisLight_I8" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_J1" VarB="Channel 9^GVL_Relais.bRelaisLight_J1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_J3" VarB="Channel 11^GVL_Relais.bRelaisLight_J3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_J4" VarB="Channel 12^GVL_Relais.bRelaisLight_J4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_J5" VarB="Channel 13^GVL_Relais.bRelaisLight_J5" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_J6" VarB="Channel 14^GVL_Relais.bRelaisLight_J6" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Lights X-Y (EL2809)">
+				<Link VarA="PlcTask Outputs^GVL_Drukknoppen.bMeldingDK11x4" VarB="Channel 16^GVL_Drukknoppen.bMeldingDK11x4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W1" VarB="Channel 1^GVL_Relais.bRelaisLight_W1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W2" VarB="Channel 2^GVL_Relais.bRelaisLight_W2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W3" VarB="Channel 3^GVL_Relais.bRelaisLight_W3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W4" VarB="Channel 4^GVL_Relais.bRelaisLight_W4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W5" VarB="Channel 5^GVL_Relais.bRelaisLight_W5" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W6" VarB="Channel 6^GVL_Relais.bRelaisLight_W6" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W7" VarB="Channel 7^GVL_Relais.bRelaisLight_W7" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_W8" VarB="Channel 8^GVL_Relais.bRelaisLight_W8" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y1" VarB="Channel 9^GVL_Relais.bRelaisLight_Y1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y2" VarB="Channel 10^GVL_Relais.bRelaisLight_Y2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y3" VarB="Channel 11^GVL_Relais.bRelaisLight_Y3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y4" VarB="Channel 12^GVL_Relais.bRelaisLight_Y4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y5" VarB="Channel 13^GVL_Relais.bRelaisLight_Y5" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y6" VarB="Channel 14^GVL_Relais.bRelaisLight_Y6" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Y7" VarB="Channel 15^GVL_Relais.bRelaisLight_Y7" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Sensoren (EL1008)">
+				<Link VarA="PlcTask Inputs^GVL_Deurcontacten.bContactSchuifdeur" VarB="Channel 3^GVL_Deurcontacten.bContactSchuifdeur" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Deurcontacten.bContactSchuifdeurLeefruimte" VarB="Channel 4^GVL_Deurcontacten.bContactSchuifdeurLeefruimte" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Deurcontacten.bContactVoordeur" VarB="Channel 1^GVL_Deurcontacten.bContactVoordeur" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Deurcontacten.bContactZijdeur" VarB="Channel 2^GVL_Deurcontacten.bContactZijdeur" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Energiemetingen.bWaterSensor" VarB="Channel 7^GVL_Energiemetingen.bWaterSensor" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Temperaturen (EL3208)">
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp1" VarB="RTD Inputs Channel 1^GVL_Temperaturen.iTemp1"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp2" VarB="RTD Inputs Channel 2^GVL_Temperaturen.iTemp2"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp3" VarB="RTD Inputs Channel 3^GVL_Temperaturen.iTemp3"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp4" VarB="RTD Inputs Channel 4^GVL_Temperaturen.iTemp4"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp5" VarB="RTD Inputs Channel 5^GVL_Temperaturen.iTemp5"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp6" VarB="RTD Inputs Channel 6^GVL_Temperaturen.iTemp6"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp7" VarB="RTD Inputs Channel 7^GVL_Temperaturen.iTemp7"/>
+				<Link VarA="PlcTask Inputs^GVL_Temperaturen.iTemp8" VarB="RTD Inputs Channel 8^GVL_Temperaturen.iTemp8"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Tuinhuis (EK1828)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK30x1" VarB="Channel 1^GVL_Drukknoppen.bDK30x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK30x2" VarB="Channel 2^GVL_Drukknoppen.bDK30x2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Z1" VarB="Channel 5^GVL_Relais.bRelaisLight_Z1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Z2" VarB="Channel 6^GVL_Relais.bRelaisLight_Z2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Z3" VarB="Channel 7^GVL_Relais.bRelaisLight_Z3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_Z4" VarB="Channel 8^GVL_Relais.bRelaisLight_Z4" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Tuinhuis achteraan (EK1828)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK40x1" VarB="Channel 1^GVL_Drukknoppen.bDK40x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK40x2" VarB="Channel 2^GVL_Drukknoppen.bDK40x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK40x3" VarB="Channel 3^GVL_Drukknoppen.bDK40x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK40x4" VarB="Channel 4^GVL_Drukknoppen.bDK40x4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_ZZ1" VarB="Channel 5^GVL_Relais.bRelaisLight_ZZ1" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_ZZ2" VarB="Channel 6^GVL_Relais.bRelaisLight_ZZ2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_ZZ3" VarB="Channel 7^GVL_Relais.bRelaisLight_ZZ3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_ZZ4" VarB="Channel 8^GVL_Relais.bRelaisLight_ZZ4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_ZZ5" VarB="Channel 9^GVL_Relais.bRelaisLight_ZZ5" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_ZZ6" VarB="Channel 10^GVL_Relais.bRelaisLight_ZZ6" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Verdieping (EK1100)^DK17-18-19 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK17x1" VarB="Channel 1^GVL_Drukknoppen.bDK17x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK17x2" VarB="Channel 2^GVL_Drukknoppen.bDK17x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK17x3" VarB="Channel 3^GVL_Drukknoppen.bDK17x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK17x4" VarB="Channel 4^GVL_Drukknoppen.bDK17x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK17x5" VarB="Channel 5^GVL_Drukknoppen.bDK17x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK17x6" VarB="Channel 6^GVL_Drukknoppen.bDK17x6" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK18x1" VarB="Channel 7^GVL_Drukknoppen.bDK18x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK18x2" VarB="Channel 8^GVL_Drukknoppen.bDK18x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK18x3" VarB="Channel 9^GVL_Drukknoppen.bDK18x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK18x4" VarB="Channel 10^GVL_Drukknoppen.bDK18x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK19x1" VarB="Channel 11^GVL_Drukknoppen.bDK19x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK19x2" VarB="Channel 12^GVL_Drukknoppen.bDK19x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK19x3" VarB="Channel 13^GVL_Drukknoppen.bDK19x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK19x4" VarB="Channel 14^GVL_Drukknoppen.bDK19x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK19x5" VarB="Channel 15^GVL_Drukknoppen.bDK19x5" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK19x6" VarB="Channel 16^GVL_Drukknoppen.bDK19x6" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Verdieping (EK1100)^DK20-21-22 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK20x1" VarB="Channel 1^GVL_Drukknoppen.bDK20x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK20x2" VarB="Channel 2^GVL_Drukknoppen.bDK20x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK20x3" VarB="Channel 3^GVL_Drukknoppen.bDK20x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK20x4" VarB="Channel 4^GVL_Drukknoppen.bDK20x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK21x1" VarB="Channel 5^GVL_Drukknoppen.bDK21x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK21x2" VarB="Channel 6^GVL_Drukknoppen.bDK21x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK21x3" VarB="Channel 7^GVL_Drukknoppen.bDK21x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK21x4" VarB="Channel 8^GVL_Drukknoppen.bDK21x4" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK22x1" VarB="Channel 9^GVL_Drukknoppen.bDK22x1" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK22x2" VarB="Channel 10^GVL_Drukknoppen.bDK22x2" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK22x3" VarB="Channel 11^GVL_Drukknoppen.bDK22x3" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_Drukknoppen.bDK22x4" VarB="Channel 12^GVL_Drukknoppen.bDK22x4" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Verdieping (EK1100)^Dimmers2 (EL4008)">
+				<Link VarA="PlcTask Outputs^GVL_Dimmers.DimLight_BD1" VarB="AO Outputs Channel 1^GVL_Dimmers.DimLight_BD1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Verdieping (EK1100)^Rolluiken (EL2008)">
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorRolluik2Omhoog" VarB="Channel 1^GVL_Screens.bMotorRolluik2Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorRolluik2Omlaag" VarB="Channel 2^GVL_Screens.bMotorRolluik2Omlaag" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorRolluik3Omhoog" VarB="Channel 3^GVL_Screens.bMotorRolluik3Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorRolluik3Omlaag" VarB="Channel 4^GVL_Screens.bMotorRolluik3Omlaag" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Kast Verdieping (EK1100)^Screens en Lights-BD (EL2809)">
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_BD2" VarB="Channel 11^GVL_Relais.bRelaisLight_BD2" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_BD3" VarB="Channel 12^GVL_Relais.bRelaisLight_BD3" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_BD4" VarB="Channel 13^GVL_Relais.bRelaisLight_BD4" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_BD5" VarB="Channel 14^GVL_Relais.bRelaisLight_BD5" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_BD6" VarB="Channel 15^GVL_Relais.bRelaisLight_BD6" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Relais.bRelaisLight_BD8" VarB="Channel 16^GVL_Relais.bRelaisLight_BD8" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorRolluik1Omhoog" VarB="Channel 9^GVL_Screens.bMotorRolluik1Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorRolluik1Omlaag" VarB="Channel 10^GVL_Screens.bMotorRolluik1Omlaag" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen1Omhoog" VarB="Channel 1^GVL_Screens.bMotorScreen1Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen1Omlaag" VarB="Channel 2^GVL_Screens.bMotorScreen1Omlaag" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen2Omhoog" VarB="Channel 3^GVL_Screens.bMotorScreen2Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen2Omlaag" VarB="Channel 4^GVL_Screens.bMotorScreen2Omlaag" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen3Omhoog" VarB="Channel 5^GVL_Screens.bMotorScreen3Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen3Omlaag" VarB="Channel 6^GVL_Screens.bMotorScreen3Omlaag" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen4Omhoog" VarB="Channel 7^GVL_Screens.bMotorScreen4Omhoog" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_Screens.bMotorScreen4Omlaag" VarB="Channel 8^GVL_Screens.bMotorScreen4Omlaag" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Ventilatie en Dimmers1 (EL4004)">
+				<Link VarA="PlcTask Outputs^GVL_Dimmers.DimLight_I2" VarB="AO Outputs Channel 2^GVL_Dimmers.DimLight_I2"/>
+				<Link VarA="PlcTask Outputs^GVL_Dimmers.DimLight_J1" VarB="AO Outputs Channel 4^GVL_Dimmers.DimLight_J1"/>
+				<Link VarA="PlcTask Outputs^GVL_Dimmers.DimLight_J2" VarB="AO Outputs Channel 3^GVL_Dimmers.DimLight_J2"/>
+				<Link VarA="PlcTask Outputs^GVL_Ventilatie.iVentilatie" VarB="AO Outputs Channel 1^GVL_Ventilatie.iVentilatie"/>
+			</OwnerB>
 		</OwnerA>
 	</Mappings>
 </TcSmItem>

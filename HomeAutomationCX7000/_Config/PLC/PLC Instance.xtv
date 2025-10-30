@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19" ClassName="CTComPlcObjDef">
-	<Instance TmcHash="{7BF6AD15-DB24-4581-64C7-5D78D2C4A21C}">
+	<Instance TmcHash="{FF837F7B-FC46-0FF6-5654-925B7FDCB233}">
 		<Vars VarGrpType="1">
 			<Name>PlcTask Inputs</Name>
 			<Var>
@@ -832,6 +832,10 @@
 			<Var>
 				<Name>GVL_Draaipoort.bDraaipoortVoetgangerOpenDicht</Name>
 				<Type>BOOL</Type>
+			</Var>
+			<Var>
+				<Name>GVL_Ventilatie.iVentilatie</Name>
+				<Type>INT</Type>
 			</Var>
 		</Vars>
 		<Vars VarGrpType="8" AreaNo="4">

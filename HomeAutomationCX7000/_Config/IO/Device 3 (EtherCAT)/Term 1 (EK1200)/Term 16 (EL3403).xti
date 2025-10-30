@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19" ClassName="CFlbTermDef" SubType="9099">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000D}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..12] OF BIT</Name>
+			<BitSize>13</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>13</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000008}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BYTE</Name>
+			<BitSize>8</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000003}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..2] OF BIT</Name>
+			<BitSize>3</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>3</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
+			<BitSize>2</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>2</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
+			<BitSize>4</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>4</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+	</ImageDatas>
+	<Box Id="16" BoxType="9099" BoxFlags="#x00000020">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0d4b3052" RevisionNo="#x00140000" InfoDataAddr="true" TimeoutMailbox2="2000" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3403 3Ch. Power Measuring" Desc="EL3403">
+			<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
+			<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
+			<SyncMan>001103002400010003000000000000000300001124010000</SyncMan>
+			<SyncMan>80113e002000010004000000000000003e00801120010000</SyncMan>
+			<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
+			<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+			<BootStrapData>0010f400f410f400</BootStrapData>
+			<Pdo Name="PM Inputs Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="3">
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-00200000000D}">ARRAY [0..12] OF BIT</Type>
+				</Entry>
+				<Entry Name="Sync Error" Index="#x6000" Sub="#x0e">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+				</Entry>
+				<Entry Name="TxPDO Toggle" Index="#x1800" Sub="#x09">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Current" Index="#x6000" Sub="#x11">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Voltage" Index="#x6000" Sub="#x12">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Active power" Index="#x6000" Sub="#x13">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Index" Index="#x6000" Sub="#x14">
+					<Type>USINT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+				</Entry>
+				<Entry Name="Variant value" Index="#x6000" Sub="#x1d">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="PM Inputs Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="3">
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-00200000000D}">ARRAY [0..12] OF BIT</Type>
+				</Entry>
+				<Entry Name="Sync Error" Index="#x6010" Sub="#x0e">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+				</Entry>
+				<Entry Name="TxPDO Toggle" Index="#x1801" Sub="#x09">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Current" Index="#x6010" Sub="#x11">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Voltage" Index="#x6010" Sub="#x12">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Active power" Index="#x6010" Sub="#x13">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Index" Index="#x6010" Sub="#x14">
+					<Type>USINT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+				</Entry>
+				<Entry Name="Variant value" Index="#x6010" Sub="#x1d">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="PM Inputs Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="3">
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-00200000000D}">ARRAY [0..12] OF BIT</Type>
+				</Entry>
+				<Entry Name="Sync Error" Index="#x6020" Sub="#x0e">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+				</Entry>
+				<Entry Name="TxPDO Toggle" Index="#x1802" Sub="#x09">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Current" Index="#x6020" Sub="#x11">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Voltage" Index="#x6020" Sub="#x12">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Active power" Index="#x6020" Sub="#x13">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Index" Index="#x6020" Sub="#x14">
+					<Type>USINT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+				</Entry>
+				<Entry Name="Variant value" Index="#x6020" Sub="#x1d">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="PM Status data" Index="#x1a03" Flags="#x0011" SyncMan="3">
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000003}">ARRAY [0..2] OF BIT</Type>
+				</Entry>
+				<Entry Name="Missing zero crossing A" Index="#xf100" Sub="#x04">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Missing zero crossing B" Index="#xf100" Sub="#x05">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Missing zero crossing C" Index="#xf100" Sub="#x06">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000002}">ARRAY [0..1] OF BIT</Type>
+				</Entry>
+				<Entry Name="Phase sequence error" Index="#xf100" Sub="#x09">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+				</Entry>
+				<Entry Name="Sync Error" Index="#xf100" Sub="#x0e">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000002}">ARRAY [0..1] OF BIT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="PM Outputs Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+				<Entry Name="Index" Index="#x7000" Sub="#x01">
+					<Type>USINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="PM Outputs Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
+				<Entry Name="Index" Index="#x7010" Sub="#x01">
+					<Type>USINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="PM Outputs Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
+				<Entry Name="Index" Index="#x7020" Sub="#x01">
+					<Type>USINT</Type>
+				</Entry>
+			</Pdo>
+			<CoeProfile ProfileNo="22287241"/>
+			<CoeProfile ProfileNo="22287241"/>
+			<CoeProfile ProfileNo="22287241"/>
+		</EtherCAT>
+	</Box>
+</TcSmItem>

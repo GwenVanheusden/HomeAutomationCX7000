@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Ventilatie" Id="{89772a37-cb60-4ae6-9dfb-54548e538223}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Ventilatie
+VAR
+	rVolt			: REAL;
+	rtVentUP		: R_TRIG;
+	rtVentDOWN		: R_TRIG;
+
+	iVentLOW		: INT := 20;
+	iVentHIGH		: INT := 20;
+	iVentPrevious	: INT := 20;
+	rtLampDouche	: R_TRIG;
+	ftLampDouche	: F_TRIG;
+	bDouche			: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Ventilatie instellingen:
+	Proportionele ingang 1:
+		CO2 meting
+		Boost limit: 2000
+		Normal limit: 1000
+	INT Uitgang:
+		9100 = minimale waarde = 20%
+		32000 = maximale waarde = 100%					
+*)
+
+rtLampDouche(CLK:= bNovRamLight_W5 , Q=> );
+ftLampDouche(CLK:= bNovRamLight_W5 , Q=> );
+
+rtVentUP(CLK:= bDK05x4 OR bVentUP, Q=> );
+rtVentDOWN(CLK:= bDK05x3 OR bVentDOWN, Q=> );
+
+IF rtLampDouche.Q AND (todWinTime < tod#19:00:00) AND (todWinTime > tod#08:00:00) THEN
+	iVentPrevious := iNovRamVentilatie;
+	iNovRamVentilatie := 60;
+	bDouche := TRUE;
+ELSIF ftLampDouche.Q AND bDouche THEN
+	iNovRamVentilatie := iVentPrevious;
+	bDouche := FALSE;
+END_IF
+
+IF todWinTime = tod#19:00 THEN
+	iNovRamVentilatie := iVentLOW;
+	bDouche := FALSE;
+ELSIF todWinTime = tod#10:00 AND (iNovRamVentilatie < iVentHIGH) THEN
+	iNovRamVentilatie := iVentHIGH;
+END_IF
+
+IF rtVentUP.Q AND iNovRamVentilatie <= 90 THEN
+	iNovRamVentilatie := iNovRamVentilatie + 10;
+ELSIF rtVentDOWN.Q AND iNovRamVentilatie >= 30 THEN
+	iNovRamVentilatie := iNovRamVentilatie - 10;
+END_IF
+
+CASE iNovRamVentilatie OF
+20:
+	iVentilatie := 0;
+30:
+	iVentilatie := 12000;
+40:
+	iVentilatie := 15000;
+50:
+	iVentilatie := 17600;
+60:
+	iVentilatie := 20500;
+70:
+	iVentilatie := 23400;
+80:
+	iVentilatie := 26000;
+90:
+	iVentilatie := 29000;
+100:
+	iVentilatie := 32000;
+ELSE
+	iNovRamVentilatie := 20;
+END_CASE
+
+IF iVentilatie < 0 THEN
+	iVentilatie := 0;
+ELSIF iVentilatie > 32000 THEN
+	iVentilatie := 32000;
+END_IF
+
+rVolt := INT_TO_REAL(iVentilatie)/3276.7;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
