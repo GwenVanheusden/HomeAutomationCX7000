@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Energiemetingen" Id="{2f302f60-f326-4f2a-b06b-35329b1b8ed2}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	bWaterSensor 			AT %I*	: BOOL;
+	diWaterverbruikVandaag			: DINT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

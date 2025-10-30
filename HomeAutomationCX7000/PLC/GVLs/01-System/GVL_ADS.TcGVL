@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_ADS" Id="{0579207b-d91d-4430-b081-5906faa1cc75}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	bAdsSunIsDown					: BOOL;
+                            		
+	bAdsAllScreensUp				: BOOL;
+	bAdsAllScreensDn				: BOOL;
+	bAdsScreen2Up					: BOOL;
+	bAdsScreen2Dn					: BOOL;
+	bAdsScreen13Up					: BOOL;
+	bAdsScreen13Dn					: BOOL;
+	bAdsScreen4Up					: BOOL;
+	bAdsScreen4Dn					: BOOL;
+                            		
+	bAdsLichtKeukenCentraal			: BOOL;
+	bAdsLichtKeukenSpotsDampkap		: BOOL;
+	bAdsLichtLivingStepUp			: BOOL;
+	bAdsLichtLivingStepDown			: BOOL;
+
+	bAdsPoortOpenDicht				: BOOL;
+	bAdsPoortVoetganger				: BOOL;
+
+	bAdsBoilerOnOff					: BOOL;
+	bAdsBoilerState					: BOOL;
+
+	bAdsSonosBadkamerPause			: BOOL;
+	bAdsSonosBadkamerPlaylist1		: BOOL;
+	bAdsSonosBadkamerPlaylist2	 	: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

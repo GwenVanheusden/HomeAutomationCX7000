@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Relais" Id="{a7160c07-98ec-4676-84c6-37964ca5b197}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	(**********************************************************************)
+	(*********************** IMPULSRELAIS **************************)
+	(**********************************************************************)
+	bRelaisLight_I1 AT %Q*	: BOOL;	(* Centraalpunt Hal *)
+	bRelaisLight_I2 AT %Q*	: BOOL;	(* Centraalpunt Living *)					(* Niet gebruikt, gedimde lamp *)
+	bRelaisLight_I3 AT %Q*	: BOOL;	(* Geschakeld stopcontact living *)
+	bRelaisLight_I4 AT %Q*	: BOOL;	(* Wandverlichting TV *)				(* Niet aangesloten *)
+	bRelaisLight_I5 AT %Q*	: BOOL;	(* Centraalpunt Keuken *)
+	bRelaisLight_I6 AT %Q*	: BOOL;	(* Verlichting onder kookeiland *)			(* Niet aangesloten *)
+	bRelaisLight_I7 AT %Q*	: BOOL;	(* Spots naast dampkap *)
+	bRelaisLight_I8 AT %Q*	: BOOL;	(* Verlichting boven keukenkast *)		(* LED strip *)
+                          	
+	bRelaisLight_J1 AT %Q*	: BOOL;	(* Centraal Slaapkamer 3 *)
+	(*bRelaisLight_J2 AT %Q*: BOOL;	(* Centraal Slaapkamer 2 *)*)
+	bRelaisLight_J3 AT %Q*	: BOOL;	(* Centraal Slaapkamer 1 boven *)
+	bRelaisLight_J4 AT %Q*	: BOOL;	(* 3 spots Slaapkamer 1 boven *)
+	bRelaisLight_J5 AT %Q*	: BOOL;	(* 4 spots Plafond traphal *)
+	bRelaisLight_J6 AT %Q*	: BOOL;	(* 5 spots muur traphal *)
+                          	
+	bRelaisLight_W1 AT %Q*	: BOOL;	(* Spot WC beneden *)
+	bRelaisLight_W2 AT %Q*	: BOOL;	(* Verlichting boven pompbak berging *)
+	bRelaisLight_W3 AT %Q*	: BOOL;	(* Centraalpunt berging *)
+	bRelaisLight_W4 AT %Q*	: BOOL;	(* Centraalpunt koele berging *)
+	bRelaisLight_W5 AT %Q*	: BOOL;	(* Spot douche *)
+	bRelaisLight_W6 AT %Q*	: BOOL;	(* Spot WC badkamer *)
+	bRelaisLight_W7 AT %Q*	: BOOL;	(* Centraal badkamer *)
+	bRelaisLight_W8 AT %Q*	: BOOL;	(* Centraal technische ruimte boven *)
+                          	
+	bRelaisLight_Y1 AT %Q*	: BOOL;	(* Leefruimte Spots barkast *)
+	bRelaisLight_Y2 AT %Q*	: BOOL;	(* Leefruimte Centraal eettafel *)
+	bRelaisLight_Y3 AT %Q*	: BOOL;	(* Leefruimte Spots zithoek *)
+	bRelaisLight_Y4 AT %Q*	: BOOL;	(* Muurverlichting carport *)			(* Niet aangesloten *)
+	bRelaisLight_Y5 AT %Q*	: BOOL;	(* Muurverlichting leefruimte up/down spots *)
+	bRelaisLight_Y6 AT %Q*	: BOOL;	(* Muurverlichting zijde Roel *)		(* Niet aangesloten *)
+	bRelaisLight_Y7 AT %Q*	: BOOL;	(* Muurverlichting voorgevel up/down spots *)
+                          	
+	bRelaisLight_Z1 AT %Q*	: BOOL;	(* TL lampen tuinhuis *)
+	bRelaisLight_Z2 AT %Q*	: BOOL;	(* 5 spots zijkant tuinhuis *)
+	bRelaisLight_Z3 AT %Q*	: BOOL;	(* Verlichting vuilbakken *)
+	bRelaisLight_Z4 AT %Q*	: BOOL;	(* Geschakeld stopcontact tuinhuis *)
+
+	bRelaisLight_BD2 AT %Q*	: BOOL;	(* Spots kleerkast slaapkamer 1 *)
+	bRelaisLight_BD3 AT %Q*	: BOOL;	(* Spots dressoir slaapkamer 1 *)
+	bRelaisLight_BD4 AT %Q*	: BOOL;	(* Spots bad *)
+	bRelaisLight_BD5 AT %Q*	: BOOL;	(* Spots badkamer 2 *)
+	bRelaisLight_BD6 AT %Q*	: BOOL;	(* Spots spiegel badkamer 2 *)
+	bRelaisLight_BD7 AT %Q*	: BOOL;	(* Leefruimte Centraal zithoek *)
+	bRelaisLight_BD8 AT %Q*	: BOOL;	(* Spots buitengevel leefruimte *)
+                           	
+	bRelaisLight_ZZ1 AT %Q*	: BOOL;	(* Centrale spots tuinhuis achteraan *)
+	bRelaisLight_ZZ2 AT %Q*	: BOOL;	(* 2 spots wand tuinhuis achteraan *)
+	bRelaisLight_ZZ3 AT %Q*	: BOOL;
+	bRelaisLight_ZZ4 AT %Q*	: BOOL;
+	bRelaisLight_ZZ5 AT %Q*	: BOOL;
+	bRelaisLight_ZZ6 AT %Q*	: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

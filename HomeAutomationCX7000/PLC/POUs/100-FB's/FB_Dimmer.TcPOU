@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Dimmer" Id="{755c8ebf-c1ef-4902-b1cb-11473da9c79c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Dimmer
+VAR_INPUT
+	bSwitchDimmUp				:	BOOL; (* Switches or dims the output Up. *)
+	bSwitchDimmDown				:	BOOL; (* Switches or dims the output Down. *)
+	bOn							:	BOOL; (* Switches the output to the last output value, or to the value specified by nOnValueWithoutMemoryMode. *)
+	bOff						:	BOOL; (* Switches the output to 0. *)
+	bSwitchSetpUp				: 	BOOL; (* Steps the output up by iStepUpDown, default 1000 *)
+	bSwitchSetpDown				: 	BOOL; (* Steps the output down by iStepUpDown, default 1000  *)
+	bSetDimmValue				:	BOOL; (* Switches the output to the value nDimmValue. *)
+	tSwitchOverTime				:	TIME := t#500ms; (* Time for switching between the light on/off and dimming functions for the bSwitchDimmUp and bSwitchDimmDown inputs. *)
+	tDimmTime					:	TIME := t#5s; (* Time required for dimming to go from its minimum value to its maximum value. *)
+	bMemoryModeOn				:	BOOL := FALSE; (* Switches over to use the memory function, so that the previous value is written to the output as soon as it is switched on. *)
+	nOnValueWithoutMemoryMode	:	UINT := 20000; (* Value at switch on if the memory function is not active. *)
+	bDimmOnMode					:	BOOL := FALSE; (* The output value is increased in steps when switching on. *)
+	tDimmOnTime					:	TIME := T#0S; (* Period of time over which the light is turned up when switching on. bDimmOnMode must be active. *)
+	bDimmOffMode				:	BOOL := FALSE; (* The output value is reduced in steps when switching off. *)
+	tDimmOffTime				:	TIME := t#0s; (* Period of time over which the light is turned down when switching off. bDimmOffMode must be active. *)
+	nOutMin						:	UINT := 5000; (* Minimum output value. *)
+	nOutMax						:	UINT := 32767; (* Maximum output value. If the parameter nOutMin is not smaller than nOutMax, the output will remain at 0. *)
+END_VAR
+VAR_OUTPUT
+	nOut						:	UINT; (* Analogue output-value. *)
+	bLight						:	BOOL; (* Digital output-value. This bit is set if nOut is above 0. *)
+END_VAR
+VAR_IN_OUT
+	nSavedOut					:	UINT;
+	nDimmValue					:	UINT; (* The value is immediately applied to the output when there is a change. *)
+END_VAR
+VAR
+	rtrigSwitchUp				:	R_TRIG;
+	ftrigSwitchUp				:	F_TRIG;
+	rtrigSwitchDown				:	R_TRIG;
+	ftrigSwitchDown				:	F_TRIG;
+	rtrigSwitchOn				:	R_TRIG;
+	rtrigSwitchOff				:	R_TRIG;
+	rtrigSetDimmValue			:	R_TRIG;
+	rtrigStepUp					:	R_TRIG;
+	rtrigStepDown				:	R_TRIG;
+	iStepUpDown					: 	UINT	:= 1000;
+	tonLongClick				:	TON;
+	bLongClick					:	BOOL := FALSE;
+	bStartSwitchOverTimer		:	BOOL := FALSE;
+	tonCycle					:	TON;
+	bCountUp					:	BOOL := TRUE;
+	nPrevDimmValue				:	UINT := 0;
+	nStep						:	INT := 0;
+	bFristCycle					:	BOOL := FALSE;
+	fM							:	LREAL;
+	tStartDimmTime				:	TIME;
+	tStartDimmTimeOffset		:	TIME;
+	tonCycleDimmOn				:	TON;
+	fMDimmOn					:	LREAL;
+	tStartDimmOnTimeOffset		:	TIME;
+	tonCycleDimmOff				:	TON;
+	fMDimmOff					:	LREAL;
+	tStartDimmOffTime			:	TIME;
+	tStartDimmOffTimeOffset		:	TIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rtrigSwitchOn(CLK := bOn);
+IF (rtrigSwitchOn.Q AND (nOutMin < nOutMax)) THEN
+	IF (NOT bLight) THEN
+		tonCycleDimmOn(IN := FALSE);
+		nStep := 10;		(* Licht einschalten *)
+	END_IF
+END_IF
+
+rtrigSwitchOff(CLK := bOff);
+IF (rtrigSwitchOff.Q AND (nOutMin < nOutMax)) THEN
+	tonCycleDimmOff(IN := FALSE);
+	nStep := 20;		(* Licht ausschalten *)
+END_IF
+
+rtrigSwitchUp(CLK := bSwitchDimmUp);
+IF (rtrigSwitchUp.Q) THEN
+	bStartSwitchOverTimer := TRUE;
+	bLongClick := FALSE;
+	tonLongClick(IN := FALSE);
+END_IF
+
+ftrigSwitchUp(CLK := bSwitchDimmUp);
+IF (ftrigSwitchUp.Q) THEN
+	IF (NOT bLongClick AND (nOutMin < nOutMax)) THEN
+		(* kurzer Tastendruck *)
+		IF (NOT bLight) THEN
+			tonCycleDimmOn(IN := FALSE);
+			nStep := 10;		(* Licht einschalten *)
+		ELSE
+			tonCycleDimmOff(IN := FALSE);
+			nStep := 20;		(* Licht ausschalten *)
+		END_IF
+	ELSE
+		nStep := 0;
+	END_IF
+	bStartSwitchOverTimer := FALSE;
+	tonCycle(IN := FALSE);
+END_IF
+
+rtrigSwitchDown(CLK := bSwitchDimmDown);
+IF (rtrigSwitchDown.Q) THEN
+	bStartSwitchOverTimer := TRUE;
+	bLongClick := FALSE;
+	tonLongClick(IN := FALSE);
+END_IF
+
+ftrigSwitchDown(CLK := bSwitchDimmDown);
+IF (ftrigSwitchDown.Q) THEN
+	IF (NOT bLongClick) THEN
+		(* kurzer Tastendruck *)
+		IF (NOT bLight) THEN
+			tonCycleDimmOn(IN := FALSE);
+			nStep := 10;		(* Licht einschalten *)
+		ELSE
+			tonCycleDimmOff(IN := FALSE);
+			nStep := 20;		(* Licht ausschalten *)
+		END_IF
+	ELSE
+		nStep := 0;
+	END_IF
+	bStartSwitchOverTimer := FALSE;
+	tonCycle(IN := FALSE);
+END_IF
+
+(* langen Tastendruck erkennen *)
+IF (bStartSwitchOverTimer AND NOT bLongClick) THEN
+	tonLongClick(IN := TRUE, PT := tSwitchOverTime);
+	IF (tonLongClick.Q) THEN
+		tonLongClick(IN := FALSE);
+		tonCycle(IN := FALSE);
+		bLongClick := TRUE;
+		IF ((tDimmTime > t#0s) AND (nOutMin < nOutMax)) THEN
+			bCountUp := bSwitchDimmUp;
+			nStep := 30;
+		END_IF
+	END_IF
+END_IF
+
+(* Ausgang direkt setzen *)
+rtrigSetDimmValue(CLK := bSetDimmValue);
+IF (bFristCycle AND (nOutMin < nOutMax)) THEN
+	IF (((nPrevDimmValue <> nDimmValue) AND (NOT bSetDimmValue)) OR rtrigSetDimmValue.Q) THEN
+		IF (nDimmValue = 0) THEN
+			(* Licht direkt ausschalten *)
+			IF (bMemoryModeOn) THEN
+				nSavedOut := nOut;
+			END_IF
+			nOut := 0;
+			nStep := 0;
+		ELSIF (nDimmValue > nOutMax) THEN
+			nOut := nOutMax;
+			nStep := 0;
+		ELSIF (nDimmValue < nOutMin) THEN
+			nOut := nOutMin;
+			nStep := 0;
+		ELSE
+			nOut := nDimmValue;
+			nSavedOut := nOut;
+			nStep := 0;
+		END_IF
+	END_IF
+END_IF
+
+IF (NOT bFristCycle) THEN
+	IF (nSavedOut < nOutMin) THEN
+		nSavedOut := nOutMin;
+	ELSIF (nSavedOut > nOutMax) THEN
+		nSavedOut := nOutMax;
+	END_IF
+END_IF
+nPrevDimmValue := nDimmValue;
+
+rtrigStepUp(CLK := bSwitchSetpUp);
+IF (rtrigStepUp.Q AND (nOutMin < nOutMax)) THEN
+	IF (NOT bLight) THEN
+		tonCycleDimmOn(IN := FALSE);
+		nStep := 10;		(* Light On *)
+	ELSIF bLight THEN
+		nStep := 40;		(* Light Step Up *)
+	END_IF
+END_IF
+
+
+rtrigStepDown(CLK := bSwitchSetpDown);
+IF (rtrigStepDown.Q AND (nOutMin < nOutMax)) THEN
+	IF (NOT bLight) THEN
+		tonCycleDimmOn(IN := FALSE);
+		nStep := 10;		(* Light On *)
+	ELSIF bLight THEN
+		nStep := 50;		(* Light Step Down *)
+	END_IF
+END_IF
+
+
+
+
+CASE nStep OF
+10:
+	IF (bDimmOnMode AND (tDimmOnTime > t#0ms) AND (nOut = 0)) THEN
+		(* Startwerte fuer das rauffahren des Lichtes bestimmen *)
+		IF (tDimmOnTime <= t#0s) THEN
+			fMDimmOn := 0;
+		ELSE
+			fMDimmOn := UINT_TO_LREAL(nOutMax) / TIME_TO_LREAL(tDimmOnTime);
+		END_IF
+		IF (fMDimmOn <= 0) THEN
+			nStep := 0;
+		ELSE
+			IF (bMemoryModeOn) THEN
+				tStartDimmOnTimeOffset := LREAL_TO_TIME(UINT_TO_LREAL(nSavedOut) / fMDimmOn);
+			ELSE
+				tStartDimmOnTimeOffset := LREAL_TO_TIME(UINT_TO_LREAL(nOnValueWithoutMemoryMode) / fMDimmOn);
+			END_IF
+			tonCycleDimmOn(IN := FALSE);
+			nStep := 11;
+		END_IF
+	ELSE
+		(* Licht direkt einschalten *)
+		IF (NOT bMemoryModeOn) THEN
+			nSavedOut := nOnValueWithoutMemoryMode;
+		END_IF
+		IF (nSavedOut < nOutMin) THEN
+			nSavedOut := nOutMin;
+		ELSIF (nSavedOut > nOutMax) THEN
+			nSavedOut := nOutMax;
+		END_IF
+		nOut := nSavedOut;
+		nStep := 0;
+	END_IF
+
+11:
+	(* Licht rauffahren *)
+	tonCycleDimmOn(IN := TRUE, PT := tStartDimmOnTimeOffset);
+	IF (tonCycleDimmOn.Q) THEN
+		tonCycleDimmOn(IN := FALSE);
+		IF (bMemoryModeOn) THEN
+			nOut := nSavedOut;
+		ELSE
+			nOut := nOnValueWithoutMemoryMode;
+		END_IF
+		IF (nOut > nOutMax) THEN
+			nOut := nOutMax;
+		END_IF
+		nStep := 0;
+	ELSE
+		nOut := LREAL_TO_UINT(fMDimmOn * TIME_TO_LREAL(tonCycleDimmOn.ET));
+		IF (nOut > nOutMax) THEN
+			nOut := nOutMax;
+		END_IF
+	END_IF
+
+20:
+	IF (bDimmOffMode AND (tDimmOffTime > t#0ms)) THEN
+		(* Startwerte fuer das runterfahren des Lichtes bestimmen *)
+		IF (tDimmOffTime <= t#0s) THEN
+			fMDimmOff := 0;
+		ELSE
+			fMDimmOff := UINT_TO_LREAL(nOutMax) / TIME_TO_LREAL(tDimmOffTime);
+		END_IF
+		IF (fMDimmOff <= 0) THEN
+			nStep := 0;
+		ELSE
+			tStartDimmOffTimeOffset := LREAL_TO_TIME((UINT_TO_LREAL(nOut) - UINT_TO_LREAL(nOutMax)) / (fMDimmOff * (-1.0)));
+			tStartDimmOffTime := tDimmOffTime - tStartDimmOffTimeOffset;
+			tonCycleDimmOff(IN := FALSE);
+			nStep := 21;
+		END_IF
+	ELSE
+		(* Licht direkt ausschalten *)
+		nOut := 0;
+		nStep := 0;
+	END_IF
+
+21:
+	(* Licht runterfahren *)
+	tonCycleDimmOff(IN := TRUE, PT := tStartDimmOffTime);
+	IF (tonCycleDimmOff.Q) THEN
+		tonCycleDimmOff(IN := FALSE);
+		nOut := 0;
+		nStep := 0;
+	ELSE
+		nOut := LREAL_TO_UINT((-1) * fMDimmOff * TIME_TO_LREAL(tonCycleDimmOff.ET + tStartDimmOffTimeOffset) + UINT_TO_LREAL(nOutMax));
+		IF (nOut > nOutMax) THEN
+			nOut := nOutMax;
+		END_IF
+	END_IF
+
+30:
+	(* Licht einschalten, wenn dieses aus ist *)
+	IF (NOT bLight) THEN
+		IF (bMemoryModeOn) THEN
+			nOut := nSavedOut;
+		ELSE
+			nOut := nOnValueWithoutMemoryMode;
+		END_IF
+		IF (nOut < nOutMin) THEN
+			nOut := nOutMin;
+		ELSIF (nOut > nOutMax) THEN
+			nOut := nOutMax;
+		END_IF
+	END_IF
+
+	(* Startwerte für das kontinuierliche Dimmen bestimmen *)
+	IF (tDimmTime <= t#0s) THEN
+		fM := 0;
+	ELSE
+		fM := (UINT_TO_LREAL(nOutMax) - UINT_TO_LREAL(nOutMin)) / TIME_TO_LREAL(tDimmTime);
+	END_IF
+	IF (fM <= 0) THEN
+		nStep := 0;
+	ELSE
+		IF (bCountUp) THEN
+			tStartDimmTimeOffset := LREAL_TO_TIME((UINT_TO_LREAL(nOut) - UINT_TO_LREAL(nOutMin)) / fM);
+		ELSE
+			tStartDimmTimeOffset := LREAL_TO_TIME((UINT_TO_LREAL(nOut) - UINT_TO_LREAL(nOutMax)) / (fM * (-1.0)));
+		END_IF
+		tStartDimmTime := tDimmTime - tStartDimmTimeOffset;
+		tonCycle(IN := FALSE);
+		nStep := 31;
+	END_IF
+
+31:
+	tonCycle(IN := TRUE, PT := tStartDimmTime);
+	IF (tonCycle.Q) THEN
+		tonCycle(IN := FALSE);
+		IF (bCountUp) THEN
+			nOut := nOutMax;
+		ELSE
+			nOut := nOutMin;
+		END_IF
+		tStartDimmTime := tDimmTime;
+		tStartDimmTimeOffset := t#0ms;
+		nStep := 0;
+	ELSE
+		(* Ausgang kontinuierlich dimmen *)
+		IF (bCountUp) THEN
+			(* erhöhen *)
+			nOut := LREAL_TO_UINT(fM * TIME_TO_LREAL(tonCycle.ET + tStartDimmTimeOffset) + UINT_TO_LREAL(nOutMin));
+		ELSE
+			(* erniedriegen *)
+			nOut := LREAL_TO_UINT((-1) * fM * TIME_TO_LREAL(tonCycle.ET + tStartDimmTimeOffset) + UINT_TO_LREAL(nOutMax));
+		END_IF
+		IF (nOut < nOutMin) THEN
+			nOut := nOutMin;
+		ELSIF (nOut > nOutMax) THEN
+			nOut := nOutMax;
+		END_IF
+		IF (bMemoryModeOn) THEN
+			nSavedOut := nOut;
+		END_IF
+	END_IF
+
+40:
+	IF nOut + iStepUpDown < nOutMax THEN
+		nOut := nOut + iStepUpDown;
+	END_IF
+	IF (bMemoryModeOn) THEN
+		nSavedOut := nOut;
+	END_IF
+	nStep := 0;
+
+50:
+	IF nOut - iStepUpDown > nOutMin THEN
+		nOut := nOut - iStepUpDown;
+	END_IF
+	IF (bMemoryModeOn) THEN
+		nSavedOut := nOut;
+	END_IF
+	nStep := 0;
+
+ELSE
+	;
+END_CASE
+
+IF ((nOut < nOutMin) OR (nOut = 0)) THEN
+	bLight := FALSE;
+ELSE
+	bLight := TRUE;
+END_IF
+
+bFristCycle := TRUE;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

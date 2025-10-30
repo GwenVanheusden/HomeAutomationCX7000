@@ -5,6 +5,369 @@
 		<ImageId>276</ImageId>
 		<Vars VarGrpType="8">
 			<Name>Retains</Name>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I1_[851]</Name>
+				<Type>BOOL</Type>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I2_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>8</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>16</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>24</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I5_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>32</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I6_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>40</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I7_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>48</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_I8_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>56</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_J3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>64</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_J4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>72</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_J5_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>80</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_J6_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>88</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W1_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>96</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W2_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>104</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>112</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>120</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W5_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>128</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W6_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>136</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W7_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>144</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_W8_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>152</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y1_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>160</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y2_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>168</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>176</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>184</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y5_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>192</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y6_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>200</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Y7_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>208</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Z1_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>216</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Z2_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>224</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Z3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>232</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_Z4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>240</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD2_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>248</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>256</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>264</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD5_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>272</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD6_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>280</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD7_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>288</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_BD8_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>296</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_ZZ1_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>304</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_ZZ2_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>312</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_ZZ3_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>320</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_ZZ4_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>328</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_ZZ5_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>336</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamLight_ZZ6_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>344</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.nDimmValue_I2_[851]</Name>
+				<Type>UINT</Type>
+				<BitOffs>352</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.nDimmValue_BD1_[851]</Name>
+				<Type>UINT</Type>
+				<BitOffs>368</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.nDimmValue_J2_[851]</Name>
+				<Type>UINT</Type>
+				<BitOffs>384</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.nDimmValue_J1_[851]</Name>
+				<Type>UINT</Type>
+				<BitOffs>400</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.iNovRamVentilatie_[851]</Name>
+				<Type>INT</Type>
+				<BitOffs>416</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.bNovRamBoiler_[851]</Name>
+				<Type>BOOL</Type>
+				<BitOffs>432</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.diWaterteller_[851]</Name>
+				<Type>DINT</Type>
+				<BitOffs>440</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
+			<Var NotLinkable="true">
+				<Name>GVL_NovRam.diWatertellerGisteren_[851]</Name>
+				<Type>DINT</Type>
+				<BitOffs>472</BitOffs>
+				<InOut>7</InOut>
+				<UserHandle>33620016</UserHandle>
+			</Var>
 		</Vars>
 		<Retain AreaSize="8192" DataSize="4064" ContextCnt="4"/>
 	</Box>

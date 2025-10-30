@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_System" Id="{cb2e22e2-abe8-4331-b898-1a827c7df138}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	(* Windows Time Variables *)
+	strWinTime				: TIMESTRUCT;
+	todWinTime				: TOD;
+	sTime					: STRING;
+	sDate					: STRING;
+	bValidSystemTime		: BOOL;
+	bMiddernacht			: BOOL;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

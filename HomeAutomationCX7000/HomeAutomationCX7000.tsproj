@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19">
-	<Project ProjectGUID="{84B38403-459B-4232-86C8-4E5FADE4031C}" TargetNetId="5.170.212.74.1.1" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{84B38403-459B-4232-86C8-4E5FADE4031C}" TargetNetId="192.168.0.199.1.1" ShowHideConfigurations="#x6">
 		<System>
 			<Settings RouterMemory="4194304">
 				<IoIdleTask Priority="30" CycleTime="100000"/>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_LongMultipleClick" Id="{c5a4e1a4-a862-4997-9351-da6e66fc72c9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LongMultipleClick
+VAR_INPUT
+	bInput				: BOOL;
+	tShortPress			: TIME := t#500ms;
+END_VAR
+VAR_OUTPUT
+	bShortPress1		: BOOL;
+	bShortPress2		: BOOL;
+	bShortPress3		: BOOL;
+	bLongPress1			: BOOL;
+	bLongPress2			: BOOL;
+	bLongPress3			: BOOL;
+	bLongContPress1		: BOOL;
+	bLongContPress2		: BOOL;
+	bLongContPress3		: BOOL;
+END_VAR
+VAR
+	iCase				: INT;
+	rtInput				: R_TRIG;
+	ftInput				: F_TRIG;
+	tonTimer			: TON;
+	tonTimerLongClick	: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rtInput(CLK:= bInput);
+ftInput(CLK:= bInput);
+
+CASE iCase OF
+0:
+	tonTimer(IN:=FALSE);
+	tonTimerLongClick(IN:=FALSE);
+	bShortPress1 := FALSE;
+	bShortPress2 := FALSE;
+	bShortPress3 := FALSE;
+	bLongPress1 := FALSE;
+	bLongPress2 := FALSE;
+	bLongPress3 := FALSE;
+	bLongContPress1 := FALSE;
+	bLongContPress2 := FALSE;
+	bLongContPress3 := FALSE;
+	IF rtInput.Q THEN
+		iCase := 1;
+	END_IF
+
+1:
+	tonTimer(IN:=TRUE, PT:=tShortPress);
+	IF tonTimer.Q AND NOT bInput THEN
+		bShortPress1 := TRUE;
+		iCase := 0;
+	ELSIF tonTimer.Q AND bInput THEN
+		bLongPress1 := TRUE;
+		iCase := 10;
+	ELSIF rtInput.Q THEN
+		tonTimer(IN:=FALSE);
+		iCase := 2;
+	END_IF
+
+10:
+	bLongPress1 := FALSE;
+	tonTimerLongClick(IN:=NOT tonTimerLongClick.Q, PT:=t#400ms);
+	bLongContPress1 := tonTimerLongClick.Q;
+	IF ftInput.Q THEN
+		iCase := 0;
+	END_IF
+
+2:
+	tonTimer(IN:=TRUE, PT:=tShortPress);
+	IF tonTimer.Q AND NOT bInput THEN
+		bShortPress2 := TRUE;
+		iCase := 0;
+	ELSIF tonTimer.Q AND bInput THEN
+		bLongPress2 := TRUE;
+		iCase := 20;
+	ELSIF rtInput.Q THEN
+		tonTimer(IN:=FALSE);
+		iCase := 3;
+	END_IF
+
+20:
+	bLongPress2 := FALSE;
+	tonTimerLongClick(IN:=NOT tonTimerLongClick.Q, PT:=t#400ms);
+	bLongContPress2 := tonTimerLongClick.Q;
+	IF ftInput.Q THEN
+		iCase := 0;
+	END_IF
+
+3:
+	tonTimer(IN:=TRUE, PT:=tShortPress);
+	IF tonTimer.Q AND NOT bInput THEN
+		bShortPress3 := TRUE;
+		iCase := 0;
+	ELSIF tonTimer.Q AND bInput THEN
+		bLongPress3 := TRUE;
+		iCase := 30;
+	END_IF
+
+30:
+	bLongPress3 := FALSE;
+	tonTimerLongClick(IN:=NOT tonTimerLongClick.Q, PT:=t#400ms);
+	bLongContPress3 := tonTimerLongClick.Q;
+	IF ftInput.Q THEN
+		iCase := 0;
+	END_IF
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

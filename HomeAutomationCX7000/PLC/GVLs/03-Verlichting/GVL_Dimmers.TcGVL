@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Dimmers" Id="{7584a9bc-4b6c-4335-a493-62be7021b723}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	(* Dimmer outputs *)
+	DimLight_I2 	AT %Q*: INT;
+	DimLight_BD1 	AT %Q*: INT;
+	DimLight_J2 	AT %Q*: INT;
+	DimLight_J1 	AT %Q*: INT;
+	(*DimLight_J3 	AT %Q*: INT;*)
+
+	tDimmerTijd		: TIME := T#5S;
+
+	(* Dimmers *)
+	fbDimmer_I2		: FB_Dimmer;
+	fbDimmer_J1		: FB_Dimmer;
+	fbDimmer_J2		: FB_Dimmer;
+	fbDimmer_BD1	: FB_Dimmer;
+	(*fbDimmer_J3	: FB_Dimmer2Switch;*)
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

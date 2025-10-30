@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Screens" Id="{bf519c11-376e-44cb-b1b0-4455ce6b875f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Screens
+VAR_INPUT
+	bUp							:	BOOL; (* Set the bBlindUp output and reset the bBlindDown output. The bBlindUp output remains latched. *)
+	bDown						:	BOOL; (* Set the bBlindDown output and reset the bBlindUp output. The bBlindDown output remains latched. *)
+	bStop						:	BOOL; (* Reset the bBlindUp and bBlindDown outputs. *)
+	bSwitchOverUp				:	BOOL; (* Set the bBlindUp output and reset the bBlindDown output. If the signal remains present for longer than tSwitchOverTime, the output bBlindUp remains latched. *)
+	bSwitchOverDown				:	BOOL; (* Set the bBlindDown output and reset the bBlindUp output. If the signal remains present for longer than tSwitchOverTime, the output bBlindDown remains latched. *)
+	tSwitchOverTime				:	TIME := t#500ms; (* Gives the time for which the bSwitchUp and bSwitchDown inputs must remain asserted before the outputs are latched. If the value is 0, the outputs are latched immediately. *)
+	bStepUp						:	BOOL; (* Reset the bBlindDown output and set the bBlindUp output for the time tStepTime. *)
+	bStepDown					:	BOOL; (* Reset the bBlindUp output and set the bBlindDown output for the time tStepTime. *)
+	tStepTime					:	TIME := t#200ms; (* If the blind is controlled through the bStepUp or bStepDown inputs, the outputs remain asserted for this period of time. The outputs are not set if the specified duration is 0. *)
+	bShadowPosition				:	BOOL; (* The shading position is approached (see below). *)
+	tShadowTurnAroundTime		:	TIME := t#0s; (* The blind travels in the opposite direction for the period of time specified by tShadowTurnAroundTime after the shading position has been reached. A time of greater than 0 is necessary for the shading position to be approached. *)
+	tShadowTurnOffTime			:	TIME := t#20s; (* The time for which the bBlindDown output is set in order to reach the shading position. *)
+	bSafetyPosition				:	BOOL; (* The safety position is approached. To do this, the blind is raised for the period of time specified by tTurnOffTime. It is not possible to operate the blinds while this input is set. *)
+	tTurnOffTime				:	TIME := t#60s; (*  If no input is activated, then the outputs are reset after this period of time. The outputs are not automatically reset if the specified duration is 0. The value given here should be about 10% larger than the travel time that is actually measured. *)
+	tSwitchOverDeadTime			:	TIME := t#400ms; (* Dwell time at a change of direction. Both outputs are reset during this period. *)
+END_VAR
+VAR_OUTPUT
+	bBlindUp					:	BOOL;
+	bBlindDown					:	BOOL;
+END_VAR
+VAR
+	RisingEdgeSwitchOverUp		:	R_TRIG;
+	FallingEdgeSwitchOverUp		:	F_TRIG;
+	RisingEdgeSwitchOverDown	:	R_TRIG;
+	FallingEdgeSwitchOverDown	:	F_TRIG;
+	RisingEdgeSafetyPosition	:	R_TRIG;
+	RisingEdgeShadowPosition	:	R_TRIG;
+	RisingEdgeUp				:	R_TRIG;
+	RisingEdgeDown				:	R_TRIG;
+	RisingEdgeStop				:	R_TRIG;
+	RisingEdgeStepUp			:	R_TRIG;
+	RisingEdgeStepDown			:	R_TRIG;
+	TimerStepUp					:	TP;
+	TimerStepDown				:	TP;
+	TimerShadowTurnAround		:	TON;
+	TimerShadowTurnOff			:	TON;
+	TimerSwitchOverUp			:	TON;
+	TimerSwitchOverDown			:	TON;
+	TimerSwitchOverDeadTimeUp	:	TON;
+	TimerSwitchOverDeadTimeDown	:	TON;
+	TimerTurnOff				:	TON;
+	nStep						:	UINT;
+	bSuspended					:	BOOL := FALSE;
+	bSwitchOverDeadTimeUp		:	BOOL := FALSE;
+	bSwitchOverDeadTimeDown		:	BOOL := FALSE;
+	bBlindUpPrev				:	BOOL := FALSE;
+	bBlindDownPrev				:	BOOL := FALSE;
+	bBlindUpSet					:	BOOL := FALSE;
+	bBlindDownSet				:	BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF (bSuspended) THEN
+	bBlindUp := FALSE;
+	bBlindDown := FALSE;
+	bBlindUpSet := FALSE;
+	bBlindDownSet := FALSE;
+	bBlindUpPrev := FALSE;
+	bBlindDownPrev := FALSE;
+	TimerStepUp(IN := FALSE);
+	TimerStepDown(IN := FALSE);
+	TimerSwitchOverUp(IN := FALSE);
+	TimerSwitchOverDown(IN := FALSE);
+	TimerTurnOff(IN := FALSE);
+	TimerSwitchOverDeadTimeUp(IN := FALSE);
+	TimerSwitchOverDeadTimeDown(IN := FALSE);
+	nStep := 0;
+	IF (NOT bSwitchOverUp AND NOT bSwitchOverDown AND
+		NOT bUp AND NOT bDown AND NOT bStop AND
+		NOT bStepUp AND NOT bStepDown) THEN
+		bSuspended := FALSE;
+	ELSE
+		RETURN;
+	END_IF
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+RisingEdgeSafetyPosition(CLK := bSafetyPosition);
+IF (RisingEdgeSafetyPosition.Q) THEN
+	nStep := 0;
+	bBlindUpSet := TRUE;
+	bBlindDownSet := FALSE;
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+RisingEdgeShadowPosition(CLK := bShadowPosition);
+IF (RisingEdgeShadowPosition.Q AND NOT bSafetyPosition) THEN
+	IF (tShadowTurnOffTime > t#0s) THEN
+		nStep := 10;
+		TimerShadowTurnAround(IN := FALSE);
+		TimerShadowTurnOff(IN := FALSE);
+		bBlindUpSet := FALSE;
+		bBlindDownSet := TRUE;
+	END_IF
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+RisingEdgeUp(CLK := bUp);
+IF (RisingEdgeUp.Q AND NOT bSafetyPosition) THEN
+	nStep := 0;
+	bBlindUpSet := TRUE;
+	bBlindDownSet := FALSE;
+END_IF
+
+RisingEdgeDown(CLK := bDown);
+IF (RisingEdgeDown.Q AND NOT bSafetyPosition) THEN
+	nStep := 0;
+	bBlindUpSet := FALSE;
+	bBlindDownSet := TRUE;
+END_IF
+
+RisingEdgeStop(CLK := bStop);
+IF (RisingEdgeStop.Q AND NOT bSafetyPosition) THEN
+	nStep := 0;
+	bBlindUpSet := FALSE;
+	bBlindDownSet := FALSE;
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+RisingEdgeStepUp(CLK := bStepUp);
+IF (RisingEdgeStepUp.Q AND NOT bSafetyPosition) THEN
+	TimerStepUp(IN := FALSE);
+	IF (tStepTime > t#0s) THEN
+		nStep := 1;
+	END_IF
+END_IF
+
+RisingEdgeStepDown(CLK := bStepDown);
+IF (RisingEdgeStepDown.Q AND NOT bSafetyPosition) THEN
+	TimerStepDown(IN := FALSE);
+	IF (tStepTime > t#0s) THEN
+		nStep := 2;
+	END_IF
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+RisingEdgeSwitchoverUp(CLK := bSwitchOverUp);
+IF (RisingEdgeSwitchOverUp.Q AND NOT bSafetyPosition) THEN
+	TimerSwitchOverUp(IN := FALSE);
+	TimerSwitchOverDown(IN := FALSE);
+	bBlindUpSet := TRUE;
+	bBlindDownSet := FALSE;
+	nStep := 3;
+END_IF
+
+FallingEdgeSwitchOverUp(CLK := bSwitchOverUp);
+IF (FallingEdgeSwitchoverUp.Q AND NOT TimerSwitchoverUp.Q AND NOT bSafetyPosition) THEN
+	TimerSwitchOverUp(IN := FALSE);
+	TimerSwitchOverDown(IN := FALSE);
+	bBlindUpSet := FALSE;
+	bBlindDownSet := FALSE;
+	nStep := 0;
+END_IF
+
+RisingEdgeSwitchOverDown(CLK := bSwitchOverDown);
+IF (RisingEdgeSwitchoverDown.Q AND NOT bSafetyPosition) THEN
+	TimerSwitchOverUp(IN := FALSE);
+	TimerSwitchOverDown(IN := FALSE);
+	bBlindUpSet := FALSE;
+	bBlindDownSet := TRUE;
+	nStep := 4;
+END_IF
+
+FallingEdgeSwitchOverDown(CLK := bSwitchOverDown);
+IF (FallingEdgeSwitchoverDown.Q AND NOT TimerSwitchoverDown.Q AND NOT bSafetyPosition) THEN
+	TimerSwitchOverUp(IN := FALSE);
+	TimerSwitchOverDown(IN := FALSE);
+	bBlindUpSet := FALSE;
+	bBlindDownSet := FALSE;
+	nStep := 0;
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+CASE nStep OF
+1:
+	IF (NOT bSwitchOverDeadTimeUp) THEN
+		TimerStepUp(IN := TRUE, PT := tStepTime);
+		IF (TimerStepUp.Q) THEN
+			bBlindUpSet := TRUE;
+			bBlindDownSet := FALSE;
+		ELSE
+			TimerStepUp(IN := FALSE);
+			bBlindUpSet := FALSE;
+			nStep := 0;
+		END_IF
+	END_IF
+
+2:
+	IF (NOT bSwitchOverDeadTimeDown) THEN
+		TimerStepDown(IN := TRUE, PT := tStepTime);
+		IF (TimerStepDown.Q) THEN
+			bBlindUpSet := FALSE;
+			bBlindDownSet := TRUE;
+		ELSE
+			TimerStepDown(IN := FALSE);
+			bBlindDownSet := FALSE;
+			nStep := 0;
+		END_IF
+	END_IF
+3:
+	IF (NOT bSwitchOverDeadTimeUp) THEN
+		TimerSwitchOverUp(IN := TRUE, PT := tSwitchOverTime);
+		IF (TimerSwitchOverUp.Q) THEN
+			bBlindUpSet := TRUE;
+			bBlindDownSet := FALSE;
+			nStep := 0;
+		END_IF
+	END_IF
+4:
+	IF (NOT bSwitchOverDeadTimeDown) THEN
+		TimerSwitchOverDown(IN := TRUE, PT := tSwitchOverTime);
+		IF (TimerSwitchOverDown.Q) THEN
+			bBlindUpSet := FALSE;
+			bBlindDownSet := TRUE;
+			nStep := 0;
+		END_IF
+	END_IF
+10:
+	IF (NOT bSwitchOverDeadTimeDown) THEN
+		TimerShadowTurnOff(IN := TRUE, PT := tShadowTurnOffTime);
+		IF (TimerShadowTurnOff.Q) THEN
+			TimerShadowTurnOff(IN := FALSE);
+			bBlindUpSet := TRUE;
+			bBlindDownSet := FALSE;
+			nStep := 11;
+		END_IF
+	END_IF
+11:
+	IF (NOT bSwitchOverDeadTimeDown) THEN
+		TimerShadowTurnAround(IN := TRUE, PT := tShadowTurnAroundTime);
+		IF (TimerShadowTurnAround.Q) THEN
+			TimerShadowTurnAround(IN := FALSE);
+			bBlindUpSet := FALSE;
+			bBlindDownSet := FALSE;
+			nStep := 0;
+		END_IF
+	END_IF
+ELSE
+	;
+END_CASE
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+IF ((bBlindDown OR bBlindUp) AND (tTurnOffTime > t#0ms)) THEN
+	TimerTurnOff(IN := TRUE, PT := tTurnOffTime);
+	IF (TimerTurnOff.Q) THEN
+		TimerTurnOff(IN := FALSE);
+		bBlindUp := FALSE;
+		bBlindDown := FALSE;
+		bBlindUpSet := FALSE;
+		bBlindDownSet := FALSE;
+	END_IF
+ELSE
+	TimerTurnOff(IN := FALSE);
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+IF (tSwitchOverDeadTime > t#0ms) THEN
+	IF (bBlindUp AND NOT bBlindUpSet) THEN
+		bSwitchOverDeadTimeDown := TRUE;
+		TimerSwitchOverDeadTimeDown(IN := FALSE);
+
+		bSwitchOverDeadTimeUp := FALSE;
+		TimerSwitchOverDeadTimeUp(IN := FALSE);
+
+	END_IF
+	IF (bBlindDown AND NOT bBlindDownSet) THEN
+		bSwitchOverDeadTimeUp := TRUE;
+		TimerSwitchOverDeadTimeUp(IN := FALSE);
+
+		bSwitchOverDeadTimeDown := FALSE;
+		TimerSwitchOverDeadTimeDown(IN := FALSE);
+	END_IF
+END_IF
+
+IF (bSwitchOverDeadTimeDown) THEN
+	TimerSwitchOverDeadTimeDown(IN := TRUE, PT := tSwitchOverDeadTime);
+	IF (TimerSwitchOverDeadTimeDown.Q) THEN
+		bSwitchOverDeadTimeDown := FALSE;
+	END_IF
+END_IF
+
+IF (bSwitchOverDeadTimeUp) THEN
+	TimerSwitchOverDeadTimeUp(IN := TRUE, PT := tSwitchOverDeadTime);
+	IF (TimerSwitchOverDeadTimeUp.Q) THEN
+		bSwitchOverDeadTimeUp := FALSE;
+	END_IF
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+IF (bSwitchOverDeadTimeUp) THEN
+	bBlindUp := bBlindUpPrev;
+ELSE
+	bBlindUp := bBlindUpSet;
+END_IF
+
+IF (bSwitchOverDeadTimeDown) THEN
+	bBlindDown := bBlindDownPrev;
+ELSE
+	bBlindDown := bBlindDownSet;
+END_IF
+
+bBlindUpPrev := bBlindUp;
+bBlindDownPrev := bBlindDown;
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)
+
+IF (bBlindDown AND bBlindUp) THEN
+	bSuspended := TRUE;
+	bBlindUp := FALSE;
+	bBlindDown := FALSE;
+	bBlindUpSet := FALSE;
+	bBlindDownSet := FALSE;
+END_IF
+
+(*----------------------------------------------------------------------------------------------------------------------------------------------*)]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

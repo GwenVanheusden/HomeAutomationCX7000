@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Visualisatie" Id="{afa90f01-c4dc-47de-b86b-3db1ea79700d}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	(* Virtuele bediening lampen *)
+	bVLight_I1:		BOOL;
+	bVLight_I2:		BOOL;
+	bVLight_I3:		BOOL;
+	bVLight_I4:		BOOL;
+	bVLight_I5:		BOOL;
+	bVLight_I6:		BOOL;
+	bVLight_I7:		BOOL;
+	bVLight_I8:		BOOL;
+
+	bVLight_J1:		BOOL;
+	bVLight_J2:		BOOL;
+	bVLight_J3:		BOOL;
+	bVLight_J4:		BOOL;
+	bVLight_J5:		BOOL;
+	bVLight_J6:		BOOL;
+
+	bVLight_W1:		BOOL;
+	bVLight_W2:		BOOL;
+	bVLight_W3:		BOOL;
+	bVLight_W4:		BOOL;
+	bVLight_W5:		BOOL;
+	bVLight_W6:		BOOL;
+	bVLight_W7:		BOOL;
+	bVLight_W8:		BOOL;
+
+	bVLight_Y1:		BOOL;
+	bVLight_Y2:		BOOL;
+	bVLight_Y3:		BOOL;
+	bVLight_Y4:		BOOL;
+	bVLight_Y5:		BOOL;
+	bVLight_Y6:		BOOL;
+	bVLight_Y7:		BOOL;
+
+	bVLight_Z1:		BOOL;
+	bVLight_Z2:		BOOL;
+	bVLight_Z3:		BOOL;
+	bVLight_Z4:		BOOL;
+
+	bVLedUp:		BOOL;
+	bVLedDn:		BOOL;
+	bVLedNext:		BOOL;
+
+	bVLuifelin:		BOOL;
+	bVLuifeluit:	BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

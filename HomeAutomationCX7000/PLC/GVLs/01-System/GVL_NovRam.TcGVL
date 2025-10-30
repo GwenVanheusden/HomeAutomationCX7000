@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_NovRam" Id="{c8781404-fd15-4197-be9d-66cf02bc1352}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL RETAIN
+	(**********************************************************************)
+	(*********************** IMPULSRELAIS **************************)
+	(**********************************************************************)
+	bNovRamLight_I1 	: BOOL;
+	bNovRamLight_I2		: BOOL;
+	bNovRamLight_I3 	: BOOL;
+	bNovRamLight_I4 	: BOOL;
+	bNovRamLight_I5 	: BOOL;
+	bNovRamLight_I6 	: BOOL;
+	bNovRamLight_I7 	: BOOL;
+	bNovRamLight_I8 	: BOOL;
+
+	(*bNovRamLight_J1 	: BOOL;*)
+	(*bNovRamLight_J2 	: BOOL;*)
+	bNovRamLight_J3 	: BOOL;
+	bNovRamLight_J4 	: BOOL;
+	bNovRamLight_J5 	: BOOL;
+	bNovRamLight_J6 	: BOOL;
+
+	bNovRamLight_W1  	: BOOL;
+	bNovRamLight_W2  	: BOOL;
+	bNovRamLight_W3  	: BOOL;
+	bNovRamLight_W4  	: BOOL;
+	bNovRamLight_W5  	: BOOL;
+	bNovRamLight_W6  	: BOOL;
+	bNovRamLight_W7  	: BOOL;
+	bNovRamLight_W8  	: BOOL;
+
+	bNovRamLight_Y1 	: BOOL;
+	bNovRamLight_Y2 	: BOOL;
+	bNovRamLight_Y3 	: BOOL;
+	bNovRamLight_Y4 	: BOOL;
+	bNovRamLight_Y5 	: BOOL;
+	bNovRamLight_Y6 	: BOOL;
+	bNovRamLight_Y7 	: BOOL;
+
+	bNovRamLight_Z1 	: BOOL;
+	bNovRamLight_Z2 	: BOOL;
+	bNovRamLight_Z3 	: BOOL;
+	bNovRamLight_Z4 	: BOOL;
+
+	bNovRamLight_BD2 	: BOOL;
+	bNovRamLight_BD3 	: BOOL;
+	bNovRamLight_BD4 	: BOOL;
+	bNovRamLight_BD5 	: BOOL;
+	bNovRamLight_BD6 	: BOOL;
+	bNovRamLight_BD7 	: BOOL;
+	bNovRamLight_BD8 	: BOOL;
+
+	bNovRamLight_ZZ1 	: BOOL;
+	bNovRamLight_ZZ2 	: BOOL;
+	bNovRamLight_ZZ3 	: BOOL;
+	bNovRamLight_ZZ4 	: BOOL;
+	bNovRamLight_ZZ5 	: BOOL;
+	bNovRamLight_ZZ6 	: BOOL;
+
+	(**********************************************************************)
+	(*********************** DIMMERS *********************************)
+	(**********************************************************************)
+	nDimmValue_I2		: UINT;
+	nDimmValue_BD1		: UINT;
+	nDimmValue_J2		: UINT;
+	nDimmValue_J1		: UINT;
+
+
+
+
+	(**********************************************************************)
+	(*********************** VENTILATIE ******************************)
+	(**********************************************************************)
+	iNovRamVentilatie 	: INT;
+
+
+
+	(**********************************************************************)
+	(*********************** BOILER ************************************)
+	(**********************************************************************)
+	bNovRamBoiler 		: BOOL;
+
+
+
+	(**********************************************************************)
+	(*********************** ENERGIEMETING ***********************)
+	(**********************************************************************)
+	diWaterteller			: DINT;
+	diWatertellerGisteren	: DINT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

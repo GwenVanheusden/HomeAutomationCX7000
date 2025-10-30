@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Draaipoort" Id="{d05611e3-9ff0-43f1-81e5-cfa2a8daaf3e}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	bDraaipoortVolledigOpenDicht	AT %Q*	: BOOL;
+	bDraaipoortVoetgangerOpenDicht	AT %Q*	: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -19,7 +19,71 @@
     <LibraryReferences>{f0e08600-e7d1-40a1-9bee-a08e7fb110d9}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GVLs\01-System\GVL_ADS.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\01-System\GVL_NovRam.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\01-System\GVL_System.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\02-Knoppen\GVL_Deurcontacten.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\02-Knoppen\GVL_Drukknoppen.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\03-Verlichting\GVL_Dimmers.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\03-Verlichting\GVL_Relais.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\04-Boiler\GVL_Boiler.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\05-Temperaturen\GVL_Temperaturen.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\06-Screens\GVL_Screens.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\07-Draaipoort\GVL_Draaipoort.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\08-Energiemetingen\GVL_Energiemetingen.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\90-Visualisatie\GVL_Visualisatie.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\100-FB%27s\FB_Dimmer.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\100-FB%27s\FB_LongMultipleClick.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\100-FB%27s\FB_OnOffLight.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\100-FB%27s\FB_Screens.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -29,6 +93,16 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="GVLs\01-System" />
+    <Folder Include="GVLs\02-Knoppen" />
+    <Folder Include="GVLs\03-Verlichting" />
+    <Folder Include="GVLs\04-Boiler" />
+    <Folder Include="GVLs\05-Temperaturen" />
+    <Folder Include="GVLs\06-Screens" />
+    <Folder Include="GVLs\07-Draaipoort" />
+    <Folder Include="GVLs\08-Energiemetingen" />
+    <Folder Include="GVLs\90-Visualisatie" />
+    <Folder Include="POUs\100-FB%27s" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -40,6 +114,10 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Utilities</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>

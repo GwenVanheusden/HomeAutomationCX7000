@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Drukknoppen" Id="{0e4860e0-272f-4ef6-9c50-a0ba60f1e322}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	(**********************************************************************)
+	(*********************** GELIJKVLOERS **************************)
+	(**********************************************************************)
+	(* Zijdeur *)
+	bDK01x1	AT 	%I*	: BOOL;
+	bDK01x2	AT 	%I*	: BOOL;
+	bDK01x3	AT 	%I*	: BOOL;
+	bDK01x4	AT 	%I*	: BOOL;
+	bDK01x5	AT 	%I*	: BOOL;
+	bDK01x6	AT 	%I*	: BOOL;
+
+	(* WC beneden *)
+	bDK02x1	AT 	%I*	: BOOL;
+
+	(* Berging 1 *)
+	bDK03x1	AT 	%I* : BOOL;
+	bDK03x2	AT 	%I*	: BOOL;
+	bDK03x3	AT 	%I*	: BOOL;
+	bDK03x4	AT 	%I*	: BOOL;
+
+	(* Schuifraam keuken *)
+	bDK04x1	AT 	%I*	: BOOL;
+	bDK04x2	AT 	%I*	: BOOL;
+	bDK04x3	AT 	%I*	: BOOL;
+	bDK04x4	AT 	%I*	: BOOL;
+	bDK04x5	AT 	%I*	: BOOL;
+	bDK04x6	AT 	%I*	: BOOL;
+
+	(* Kookvuur *)
+	bDK05x1	AT 	%I*	: BOOL;
+	bDK05x2	AT 	%I*	: BOOL;
+	bDK05x3	AT 	%I*	: BOOL;
+	bDK05x4	AT 	%I*	: BOOL;
+
+	(* Kookeiland *)
+	bDK06x1	AT 	%I*	: BOOL;
+	bDK06x2	AT 	%I*	: BOOL;
+	bDK06x3	AT 	%I*	: BOOL;
+	bDK06x4	AT 	%I*	: BOOL;
+
+	(* Living *)
+	bDK07x1	AT 	%I*	: BOOL;
+	bDK07x2	AT 	%I*	: BOOL;
+	bDK07x3	AT 	%I*	: BOOL;
+	bDK07x4	AT 	%I*	: BOOL;
+	bDK07x5	AT 	%I*	: BOOL;
+	bDK07x6	AT 	%I*	: BOOL;
+
+	(* Voordeur *)
+	bDK08x1	AT 	%I*	: BOOL;
+	bDK08x2	AT 	%I*	: BOOL;
+	bDK08x3	AT 	%I*	: BOOL;
+	bDK08x4	AT 	%I*	: BOOL;
+
+	(* Leefruimte tegen keuken *)
+	bDK09x1	AT 	%I*	: BOOL;
+	bDK09x2	AT 	%I*	: BOOL;
+	bDK09x3	AT 	%I*	: BOOL;
+	bDK09x4	AT 	%I*	: BOOL;
+	bDK09x5	AT 	%I*	: BOOL;
+	bDK09x6	AT 	%I*	: BOOL;
+
+	(* Leefruimte tegen buitenmuur *)
+	bDK10x1	AT 	%I*	: BOOL;
+	bDK10x2	AT 	%I*	: BOOL;
+	bDK10x3	AT 	%I*	: BOOL;
+	bDK10x4	AT 	%I*	: BOOL;
+	bDK10x5	AT 	%I*	: BOOL;
+	bDK10x6	AT 	%I*	: BOOL;
+
+
+	(**********************************************************************)
+	(*********************** VERDIEPING *****************************)
+	(**********************************************************************)
+	(* Traphal *)
+	bDK11x1	AT 	%I*	: BOOL;
+	bDK11x2	AT 	%I*	: BOOL;
+	bDK11x3	AT 	%I*	: BOOL;
+	bDK11x4	AT 	%I*	: BOOL;
+
+	(* Badkamer 1 *)
+	bDK12x1	AT 	%I*	: BOOL;
+	bDK12x2	AT 	%I*	: BOOL;
+	bDK12x3	AT 	%I*	: BOOL;
+	bDK12x4	AT 	%I*	: BOOL;
+
+	(* Berging 2 deur*)
+	bDK13x1	AT 	%I*	: BOOL;
+	bDK13x2	AT 	%I*	: BOOL;
+	bDK13x3	AT 	%I*	: BOOL;
+	bDK13x4	AT 	%I*	: BOOL;
+
+	(* Berging 2 wand *)
+	bDK14x1	AT 	%I*	: BOOL;
+	bDK14x2	AT 	%I*	: BOOL;
+	bDK14x3	AT 	%I*	: BOOL;
+	bDK14x4	AT 	%I*	: BOOL;
+
+	(* Slaapkamer 2 deur *)
+	bDK15x1	AT 	%I*	: BOOL;
+	bDK15x2	AT 	%I*	: BOOL;
+	bDK15x3	AT 	%I*	: BOOL;
+	bDK15x4	AT 	%I*	: BOOL;
+
+	(* Slaapkamer 3 deur *)
+	bDK16x1	AT 	%I*	: BOOL;
+	bDK16x2	AT 	%I*	: BOOL;
+	bDK16x3	AT 	%I*	: BOOL;
+	bDK16x4	AT 	%I*	: BOOL;
+
+	(* Slaapkamer 1 deur *)
+	bDK17x1	AT 	%I*	: BOOL;
+	bDK17x2	AT 	%I*	: BOOL;
+	bDK17x3	AT 	%I*	: BOOL;
+	bDK17x4	AT 	%I*	: BOOL;
+	bDK17x5	AT 	%I*	: BOOL;
+	bDK17x6	AT 	%I*	: BOOL;
+
+	(* Slaapkamer 1 wand *)
+	bDK18x1	AT 	%I*	: BOOL;
+	bDK18x2	AT 	%I*	: BOOL;
+	bDK18x3	AT 	%I*	: BOOL;
+	bDK18x4	AT 	%I*	: BOOL;
+
+	(* Slaapkamer 1 raam *)
+	bDK19x1	AT 	%I*	: BOOL;
+	bDK19x2	AT 	%I*	: BOOL;
+	bDK19x3	AT 	%I*	: BOOL;
+	bDK19x4	AT 	%I*	: BOOL;
+	bDK19x5	AT 	%I*	: BOOL;
+	bDK19x6	AT 	%I*	: BOOL;
+
+	(* Slaapkamer 1 deur badkamer 2 *)
+	bDK20x1	AT 	%I*	: BOOL;
+	bDK20x2	AT 	%I*	: BOOL;
+	bDK20x3	AT 	%I*	: BOOL;
+	bDK20x4	AT 	%I*	: BOOL;
+
+	(* Badkamer 2 deur *)
+	bDK21x1	AT 	%I*	: BOOL;
+	bDK21x2	AT 	%I*	: BOOL;
+	bDK21x3	AT 	%I*	: BOOL;
+	bDK21x4	AT 	%I*	: BOOL;
+
+	(* Badkamer 2 wand *)
+	bDK22x1	AT 	%I*	: BOOL;
+	bDK22x2	AT 	%I*	: BOOL;
+	bDK22x3	AT 	%I*	: BOOL;
+	bDK22x4	AT 	%I*	: BOOL;
+
+
+	(**********************************************************************)
+	(*********************** BUITEN ************************************)
+	(**********************************************************************)
+	(* Tuinhuis binnen *)
+	bDK30x1	AT 	%I*	: BOOL;
+	bDK30x2	AT 	%I*	: BOOL;
+
+	(* Tuinhuis achteraan - 4 voudige knop binnen*)
+	bDK40x1 AT 	%I*	: BOOL;
+	bDK40x2 AT 	%I*	: BOOL;
+	bDK40x3 AT 	%I*	: BOOL;
+	bDK40x4 AT 	%I*	: BOOL;
+
+	(**********************************************************************)
+	(*********************** MELDING DRUKKNOPPEN *************)
+	(**********************************************************************)
+	bMeldingDK02x1	AT 	%Q*	: BOOL;
+	bMeldingDK11x3	AT 	%Q*	: BOOL;
+	bMeldingDK11x4	AT 	%Q* : BOOL;
+
+
+	(* Alles uit *)
+	bAllOff			: BOOL;
+	bAllOffBeneden	: BOOL;
+
+	(* Multiple click *)
+	fbShortLongClick12x3: FB_LongMultipleClick;
+	fbShortLongClick21x3: FB_LongMultipleClick;
+	fbShortLongClick22x3: FB_LongMultipleClick;
+	fbShortLongClick22x4: FB_LongMultipleClick;
+	fbShortLongClick30x1: FB_LongMultipleClick;
+	fbShortLongClick30x2: FB_LongMultipleClick;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

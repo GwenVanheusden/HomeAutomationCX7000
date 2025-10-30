@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Screens" Id="{06ff7f98-a7d1-4ca6-98ac-40bfa1f24541}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	bMotorScreen1Omhoog		AT %Q*: BOOL;
+	bMotorScreen1Omlaag		AT %Q*: BOOL;
+	bMotorScreen2Omhoog		AT %Q*: BOOL;
+	bMotorScreen2Omlaag		AT %Q*: BOOL;
+	bMotorScreen3Omhoog		AT %Q*: BOOL;
+	bMotorScreen3Omlaag		AT %Q*: BOOL;
+	bMotorScreen4Omhoog		AT %Q*: BOOL;
+	bMotorScreen4Omlaag		AT %Q*: BOOL;
+
+	bMotorRolluik1Omhoog	AT %Q*: BOOL;
+	bMotorRolluik1Omlaag	AT %Q*: BOOL;
+	bMotorRolluik2Omhoog	AT %Q*: BOOL;
+	bMotorRolluik2Omlaag	AT %Q*: BOOL;
+	bMotorRolluik3Omhoog	AT %Q*: BOOL;
+	bMotorRolluik3Omlaag	AT %Q*: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

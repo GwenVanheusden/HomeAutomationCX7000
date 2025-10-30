@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19" ClassName="CTComPlcObjDef">
-	<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" XtvPath="PLC\PLC Instance.xtv">
+	<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" XtvPath="PLC\PLC Instance.xtv" TmcPath="PLC\PLC.tmc">
 		<Name>__FILENAME__</Name>
 		<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+		<RetainDataMapping AreaNo="4" OTCID="#x03020002"/>
 		<Contexts>
 			<Context>
 				<Id>0</Id>
@@ -20,8 +21,59 @@
 	</Instance>
 	<Mappings>
 		<OwnerA>
-			<OwnerB Name="TIID^Device 2 (Onboard I/O Device)^Term 1 (CX7028)">
-				<Link VarA="PlcTask Outputs^MAIN.bTest" VarB="Module 1 (DIO_2x)^DIO_2x Output Channel 1^Output" Size="1"/>
+			<OwnerB Name="TIID^Device 1 (NOV-DP-RAM)^Box 2 (Retain Handler)">
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamBoiler" VarB="Retains^GVL_NovRam.bNovRamBoiler_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD2" VarB="Retains^GVL_NovRam.bNovRamLight_BD2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD3" VarB="Retains^GVL_NovRam.bNovRamLight_BD3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD4" VarB="Retains^GVL_NovRam.bNovRamLight_BD4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD5" VarB="Retains^GVL_NovRam.bNovRamLight_BD5_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD6" VarB="Retains^GVL_NovRam.bNovRamLight_BD6_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD7" VarB="Retains^GVL_NovRam.bNovRamLight_BD7_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_BD8" VarB="Retains^GVL_NovRam.bNovRamLight_BD8_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I1" VarB="Retains^GVL_NovRam.bNovRamLight_I1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I2" VarB="Retains^GVL_NovRam.bNovRamLight_I2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I3" VarB="Retains^GVL_NovRam.bNovRamLight_I3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I4" VarB="Retains^GVL_NovRam.bNovRamLight_I4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I5" VarB="Retains^GVL_NovRam.bNovRamLight_I5_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I6" VarB="Retains^GVL_NovRam.bNovRamLight_I6_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I7" VarB="Retains^GVL_NovRam.bNovRamLight_I7_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_I8" VarB="Retains^GVL_NovRam.bNovRamLight_I8_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_J3" VarB="Retains^GVL_NovRam.bNovRamLight_J3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_J4" VarB="Retains^GVL_NovRam.bNovRamLight_J4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_J5" VarB="Retains^GVL_NovRam.bNovRamLight_J5_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_J6" VarB="Retains^GVL_NovRam.bNovRamLight_J6_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W1" VarB="Retains^GVL_NovRam.bNovRamLight_W1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W2" VarB="Retains^GVL_NovRam.bNovRamLight_W2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W3" VarB="Retains^GVL_NovRam.bNovRamLight_W3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W4" VarB="Retains^GVL_NovRam.bNovRamLight_W4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W5" VarB="Retains^GVL_NovRam.bNovRamLight_W5_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W6" VarB="Retains^GVL_NovRam.bNovRamLight_W6_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W7" VarB="Retains^GVL_NovRam.bNovRamLight_W7_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_W8" VarB="Retains^GVL_NovRam.bNovRamLight_W8_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y1" VarB="Retains^GVL_NovRam.bNovRamLight_Y1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y2" VarB="Retains^GVL_NovRam.bNovRamLight_Y2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y3" VarB="Retains^GVL_NovRam.bNovRamLight_Y3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y4" VarB="Retains^GVL_NovRam.bNovRamLight_Y4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y5" VarB="Retains^GVL_NovRam.bNovRamLight_Y5_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y6" VarB="Retains^GVL_NovRam.bNovRamLight_Y6_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Y7" VarB="Retains^GVL_NovRam.bNovRamLight_Y7_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Z1" VarB="Retains^GVL_NovRam.bNovRamLight_Z1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Z2" VarB="Retains^GVL_NovRam.bNovRamLight_Z2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Z3" VarB="Retains^GVL_NovRam.bNovRamLight_Z3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_Z4" VarB="Retains^GVL_NovRam.bNovRamLight_Z4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_ZZ1" VarB="Retains^GVL_NovRam.bNovRamLight_ZZ1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_ZZ2" VarB="Retains^GVL_NovRam.bNovRamLight_ZZ2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_ZZ3" VarB="Retains^GVL_NovRam.bNovRamLight_ZZ3_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_ZZ4" VarB="Retains^GVL_NovRam.bNovRamLight_ZZ4_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_ZZ5" VarB="Retains^GVL_NovRam.bNovRamLight_ZZ5_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.bNovRamLight_ZZ6" VarB="Retains^GVL_NovRam.bNovRamLight_ZZ6_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.diWaterteller" VarB="Retains^GVL_NovRam.diWaterteller_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.diWatertellerGisteren" VarB="Retains^GVL_NovRam.diWatertellerGisteren_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.iNovRamVentilatie" VarB="Retains^GVL_NovRam.iNovRamVentilatie_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.nDimmValue_BD1" VarB="Retains^GVL_NovRam.nDimmValue_BD1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.nDimmValue_I2" VarB="Retains^GVL_NovRam.nDimmValue_I2_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.nDimmValue_J1" VarB="Retains^GVL_NovRam.nDimmValue_J1_[851]" AutoLink="true" PeerAutoLink="true"/>
+				<Link VarA="PlcTask Retains^GVL_NovRam.nDimmValue_J2" VarB="Retains^GVL_NovRam.nDimmValue_J2_[851]" AutoLink="true" PeerAutoLink="true"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Deurcontacten" Id="{8770dbe2-1c9f-40eb-90fc-3d9e80dca754}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	bContactVoordeur				AT %I*	: BOOL;
+	bContactZijdeur					AT %I*	: BOOL;
+	bContactSchuifdeur				AT %I*	: BOOL;
+	bContactSchuifdeurLeefruimte	AT %I*	: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

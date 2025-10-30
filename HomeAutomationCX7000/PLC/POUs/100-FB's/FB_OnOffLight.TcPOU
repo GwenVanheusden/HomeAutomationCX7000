@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_OnOffLight" Id="{8d47e3e6-acdd-4fca-8676-bf034993812a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_OnOffLight
+VAR_INPUT
+	bSwitch				: BOOL;	(* Switch the state of the light *)
+	bOn					: BOOL;	(* Turn the light ON *)
+	bOff					: BOOL;	(* Turn the light OFF *)
+	bAutoOff				: BOOL;	(* Activate the auto off function *)
+	tAutoOffTime			: TIME := t#1m;  (* Time delay for the auto off function *)
+	bSensorActivation		: BOOL;	(* Turn light on based on sensor *)
+END_VAR
+VAR_OUTPUT
+	bLightImpulsRelais	: BOOL;	(* Link this output to the impuls relais *)
+	bLightNormalRelais	: BOOL;	(* Link this output to a normal relais *)
+END_VAR
+VAR_IN_OUT
+	bLightNovRam 			: BOOL;	(* Link this variable with NovRam to recover the state of the light after power failure *)
+END_VAR
+VAR
+	rtSwitch				: R_TRIG;
+	rtOn					: R_TRIG;
+	rtOff					: R_TRIG;
+	tpPulseGenerator		: TP;
+	tpPulseGeneratorTotal	: TP;
+	tPulseTime				: TIME := T#120MS;
+
+	(*Auto Off *)
+	tonAutoOff				: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bLightNormalRelais := bLightNovRam;
+
+(* Flankdetecties *)
+rtSwitch(CLK:= bSwitch , Q=>);
+rtOn(CLK:= bOn OR bSensorActivation, Q=>);
+rtOff(CLK:= bOff , Q=>);
+
+tpPulseGenerator(IN:= FALSE, PT:= tPulseTime, Q=>  bLightImpulsRelais);
+tpPulseGeneratorTotal(IN:= FALSE);
+
+IF rtSwitch.Q AND NOT tpPulseGenerator.Q AND NOT tpPulseGeneratorTotal.Q  THEN						(* Switch state*)
+	bLightNovRam := NOT bLightNovRam;
+	tpPulseGenerator(IN:= rtSwitch.Q, PT:= tPulseTime, Q=>  bLightImpulsRelais, ET=>);
+	tpPulseGeneratorTotal(IN:= rtSwitch.Q, PT:= tPulseTime + t#1s );
+ELSIF rtOff.Q AND bLightNovRam AND NOT tpPulseGenerator.Q AND NOT tpPulseGeneratorTotal.Q THEN		(* Only OFF *)
+	bLightNovRam := FALSE;
+	tpPulseGenerator(IN:= rtOff.Q, PT:= tPulseTime, Q=>  bLightImpulsRelais, ET=>);
+	tpPulseGeneratorTotal(IN:= rtSwitch.Q, PT:= tPulseTime + t#1s );
+ELSIF rtOn.Q AND NOT bLightNovRam AND NOT tpPulseGenerator.Q AND NOT tpPulseGeneratorTotal.Q THEN 	(* Only OF *)
+	bLightNovRam := TRUE;
+	tpPulseGenerator(IN:= rtOn.Q, PT:= tPulseTime, Q=>  bLightImpulsRelais, ET=>);
+	tpPulseGeneratorTotal(IN:= rtSwitch.Q, PT:= tPulseTime + t#1s );
+ELSIF tonAutoOff.Q  AND bLightNovRam AND NOT tpPulseGeneratorTotal.Q THEN							(* Automatic OFF *)
+	tpPulseGenerator(IN:= tonAutoOff.Q , PT:= tPulseTime , Q=> bLightImpulsRelais , ET=>);
+	tpPulseGeneratorTotal(IN:= rtSwitch.Q, PT:= tPulseTime + t#1s );
+	bLightNovRam := FALSE;
+END_IF
+
+(*Auto Off timer *)
+tonAutoOff(IN:= bAutoOff AND bLightNovRam AND NOT bSensorActivation , PT:= tAutoOffTime, Q=> , ET=> );
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

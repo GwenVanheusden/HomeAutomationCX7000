@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Temperaturen" Id="{d79e4ab3-0a43-4765-bb23-1edcc8e5be9d}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	iTemp1 	AT %I*:	INT;
+	iTemp2 	AT %I*:	INT;
+	iTemp3 	AT %I*:	INT;
+	iTemp4 	AT %I*:	INT;
+	iTemp5 	AT %I*:	INT;
+	iTemp6 	AT %I*:	INT;
+	iTemp7 	AT %I*:	INT;
+	iTemp8 	AT %I*:	INT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
