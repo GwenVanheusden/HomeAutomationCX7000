@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_LightsBerging" Id="{db70156b-c7cd-43ae-aec5-5c2a7b168d83}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_LightsBerging
+VAR
+	bSwitchLight_W1	: BOOL;
+	bSwitchLight_W2	: BOOL;
+	bSwitchLight_W3	: BOOL;
+	bSwitchLight_W4	: BOOL;
+
+	fbOnOffLight_W1	: FB_OnOffLight;
+	fbOnOffLight_W2	: FB_OnOffLight;
+	fbOnOffLight_W3	: FB_OnOffLight;
+	fbOnOffLight_W4	: FB_OnOffLight;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bAllOffBeneden := bDK07x5 OR bDK01x5;
+
+(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
+(* Berging en Koele berging *)
+bSwitchLight_W1 := bVLight_W1 OR bDK02x1;					(*Licht WC*)
+bSwitchLight_W2 := bVLight_W2 OR bDK03x3;					(*Licht Berging Wand*)
+bSwitchLight_W3 := bVLight_W3  OR bDK01x1 OR bDK03x1;		(*Licht Berging Centraal*)
+bSwitchLight_W4 := bVLight_W4 OR bDK03x4;					(*Licht Koele berging*)
+
+(* Melding WC *)
+bMeldingDK02x1 := fbOnOffLight_W1.bLightNormalRelais;
+
+(* Berging en Koele berging *)
+fbOnOffLight_W1(
+	bSwitch:= bSwitchLight_W1,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= TRUE,
+	tAutoOffTime:= t#30m,
+	bLightNovRam:= bNovRamLight_W1,
+	bLightImpulsRelais=> bRelaisLight_W1,
+	bLightNormalRelais=> );
+
+fbOnOffLight_W2(
+	bSwitch:= bSwitchLight_W2,
+	bOn:= ,
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= TRUE,
+	tAutoOffTime:= t#15m,
+	bLightNovRam:= bNovRamLight_W2,
+	bLightImpulsRelais=> bRelaisLight_W2,
+	bLightNormalRelais=> );
+
+fbOnOffLight_W3(
+	bSwitch:= bSwitchLight_W3,
+	bOn:= (P_Doors.ftContactZijdeur.Q AND bAdsSunIsDown),
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= TRUE,
+	tAutoOffTime:= t#15m,
+	bLightNovRam:= bNovRamLight_W3,
+	bLightImpulsRelais=> bRelaisLight_W3,
+	bLightNormalRelais=> );
+
+fbOnOffLight_W4(
+	bSwitch:= bSwitchLight_W4,
+	bOn:= ,
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= TRUE,
+	tAutoOffTime:= t#1h,
+	bLightNovRam:= bNovRamLight_W4,
+	bLightImpulsRelais=> bRelaisLight_W4,
+	bLightNormalRelais=> );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

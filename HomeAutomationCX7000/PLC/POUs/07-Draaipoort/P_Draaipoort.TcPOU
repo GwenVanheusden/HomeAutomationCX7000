@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Draaipoort" Id="{ace3b722-277f-4802-8c15-c9a142de9e94}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Draaipoort
+VAR
+	tonDraaipoortVolledig		: TON;
+	tpDraaipoortVolledig		: TP;
+
+	tonDraaipoortVoetganger		: TON;
+	tpDraaipoortVoetganger		: TP;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tonDraaipoortVolledig(IN:= bDK01x4 OR bAdsPoortOpenDicht, PT:= T#500MS, Q=> , ET=> );
+tpDraaipoortVolledig(IN:= tonDraaipoortVolledig.Q, PT:= t#500ms, Q=> bDraaipoortVolledigOpenDicht, ET=> );
+
+
+tonDraaipoortVoetganger(IN:= bDK01x3 OR bAdsPoortVoetganger, PT:= t#500ms, Q=> , ET=> );
+tpDraaipoortVoetganger(IN:= tonDraaipoortVoetganger.Q, PT:= t#500ms, Q=> bDraaipoortVoetgangerOpenDicht, ET=> );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

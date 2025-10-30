@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Doors" Id="{ee9f021a-f646-4a6a-8221-1e4748e5de74}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Doors
+VAR
+	ftContactVoordeur				: F_TRIG;
+	ftContactZijdeur				: F_TRIG;
+	ftContactSchuifdeur				: F_TRIG;
+	ftContactSchuifdeurLeefruimte	: F_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ftContactVoordeur(CLK:= bContactVoordeur, Q=> );
+ftContactZijdeur(CLK:= bContactZijdeur, Q=> );
+ftContactSchuifdeur(CLK:= bContactSchuifdeur, Q=> );
+ftContactSchuifdeurLeefruimte(CLK:= bContactSchuifdeurLeefruimte, Q=> );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

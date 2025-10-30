@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_LightsBuiten" Id="{9c09f524-7667-4ade-965a-fb6314414001}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_LightsBuiten
+VAR
+	bSwitchLight_Y6		: BOOL;
+	bSwitchLight_Y7		: BOOL;
+	bSwitchLight_Z1		: BOOL;
+	bSwitchLight_Z2		: BOOL;
+	bSwitchLight_Z3		: BOOL;
+	bSwitchLight_Z4		: BOOL;
+	bSwitchLight_BD8	: BOOL;
+
+	fbOnOffLight_Y6		: FB_OnOffLight;
+	fbOnOffLight_Y7		: FB_OnOffLight;
+
+	fbOnOffLight_Z1		: FB_OnOffLight;
+	fbOnOffLight_Z2		: FB_OnOffLight;
+	fbOnOffLight_Z3		: FB_OnOffLight;
+	fbOnOffLight_Z4		: FB_OnOffLight;
+	fbOnOffLight_BD8	: FB_OnOffLight;
+
+	bAutoOffBD8			: BOOL := TRUE;
+
+	(* Tuinhuis achteraan *)
+	bSwitchLight_ZZ1	: BOOL;
+	bSwitchLight_ZZ2	: BOOL;
+	fbOnOffLight_ZZ1	: FB_OnOffLight;
+	fbOnOffLight_ZZ2	: FB_OnOffLight;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bSwitchLight_Z1 := bVLight_Z1 OR bDK30x1;					(*Licht TL Tuinhuis*)
+bSwitchLight_Z2 := bVLight_Z2;								(*Licht Led spots frame Tuinhuis*)
+bSwitchLight_Z3 := bVLight_Z3 OR bDK01x2 OR bDK10x3;		(*Licht Vuilbakken*)
+bSwitchLight_Z4 := bVLight_Z4;								(*Geschakeld stopcontact*)
+bSwitchLight_BD8 := bDK10x4 OR bDK19x4;						(* Spots buitengevel terras*)
+bSwitchLight_ZZ1 := bDK40x2;								(* 2 spots aan wand tuinhuis achteraan*)
+bSwitchLight_ZZ2 := bDK40x1 OR bDK10x2; 					(* Centrale spots tuinhuis achteraan*)
+
+
+(* Up/Down spots voorgevel huis *)
+fbOnOffLight_Y7(
+	bSwitch:= bSwitchLight_Y7,
+	bOn:= P_SunriseSunset.bSunsetPulse,
+	bOff:= P_SunriseSunset.bSunrisePulse,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Y7,
+	bLightImpulsRelais=> bRelaisLight_Y7);
+
+
+fbOnOffLight_Z1(
+	bSwitch:= bSwitchLight_Z1,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Z1,
+	bLightImpulsRelais=> bRelaisLight_Z1);
+
+fbOnOffLight_Z2(
+	bSwitch:= bSwitchLight_Z2,
+	bOn:= P_SunriseSunset.bSunsetPulse,
+	bOff:= P_SunriseSunset.bSunrisePulse,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Z2,
+	bLightImpulsRelais=> bRelaisLight_Z2);
+
+fbOnOffLight_Z3(
+	bSwitch:= bSwitchLight_Z3,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= TRUE,
+	tAutoOffTime:= t#10m,
+	bLightNovRam:= bNovRamLight_Z3,
+	bLightImpulsRelais=> bRelaisLight_Z3 );
+
+fbOnOffLight_Z4(
+	bSwitch:= bSwitchLight_Z4,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Z4,
+	bLightImpulsRelais=> bRelaisLight_Z4 );
+(*
+IF fbShortLongClick10x4.bLongClick THEN
+	bAutoOffBD8 := NOT bAutoOffBD8;
+ELSIF bMiddernacht THEN
+	bAutoOffBD8 := TRUE;
+END_IF
+*)
+fbOnOffLight_BD8(
+	bSwitch:= bSwitchLight_BD8,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= bAutoOffBD8,
+	tAutoOffTime:= t#1m,
+	bSensorActivation := (*bSensTuinhuisBuiten AND bAutoOffBD8 AND (todWinTime > (todZonOnder - T#30m)) AND (todWinTime < TOD#23:00:00)(* OR todWinTime < (todZonOp + T#25m))*)  *),
+	bLightNovRam:= bNovRamLight_BD8,
+	bLightNormalRelais=> bRelaisLight_BD8 );
+
+(* Stopcontact robotmaaier / kerstverlichting *)
+fbOnOffLight_Y6(
+	bSwitch:= bSwitchLight_Y6,
+	bOn:= (*bSunsetOn*),
+	bOff:= (*bAllOff OR bAllOffBeneden OR bSunriseOff*),
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bSensorActivation := ,
+	bLightNovRam:= bNovRamLight_Y6,
+	bLightImpulsRelais=> bRelaisLight_Y6 );
+
+(* Tuinhuis achteraan *)
+fbOnOffLight_ZZ1(
+	bSwitch:= bSwitchLight_ZZ1,
+	bOn:= ,
+	bOff:= bAllOff OR bAllOffBeneden,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_ZZ1,
+	bLightImpulsRelais=> bRelaisLight_ZZ1);
+
+fbOnOffLight_ZZ2(
+	bSwitch:= bSwitchLight_ZZ2,
+	bOn:= ,
+	bOff:=  bAllOff OR bAllOffBeneden,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_ZZ2,
+	bLightImpulsRelais=> bRelaisLight_ZZ2);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

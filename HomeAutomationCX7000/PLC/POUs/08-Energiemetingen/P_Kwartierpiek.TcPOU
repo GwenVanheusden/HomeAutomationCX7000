@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Kwartierpiek" Id="{8ada5f01-faef-47b1-ad9a-3852b8d518c6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Kwartierpiek
+VAR
+	todSystemTime						: TOD;
+                            		
+	todStartTime						: TOD;
+	CurrentActivePower					: REAL;
+	iWhMeter							: DINT;
+	iStartWhMeter						: DINT;
+	tRestTijd							: TIME;
+                            			
+	rKwartuurVoorspelling1				: REAL;
+	rKwartuurVoorspelling2				: REAL;
+	rKwartuurVoorspelling3				: REAL;
+
+	tonDelayKwartuur					: TON;
+	bMaximaleKwartuurpiekOverschreiding : BOOL;
+	rStandaardActiefVermogen			: REAL := 600; (*kW*)
+	rMaximaleKwartuurpiek				: REAL := 3500; (*kW*)
+	rGewenstActiefVermogen				: REAL;
+	tVerstrekenTijd						: TIME;
+
+	sOverKwartierpiek					: STRING;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Voorspelling kwartuurpiek*)
+todSystemTime := DT_TO_TOD(SYSTEMTIME_TO_DT(strWinTime));
+
+IF (strWinTime.wMinute MOD 15) = 0 AND strWinTime.wSecond = 0 THEN
+	todStartTime := todSystemTime;
+	iStartWhMeter := iWhMeter;
+END_IF
+
+IF (iStartWhMeter <> 0) THEN
+	tRestTijd := (todStartTime - todSystemTime) + T#15M;
+	IF tRestTijd > t#15M THEN
+		tRestTijd := t#15M;
+	END_IF
+	tVerstrekenTijd := t#15M - tRestTijd;
+
+	rKwartuurVoorspelling1 := (iWhMeter - iStartWhMeter)*4.0;  (* Eerste berekening. Gebruikte kWh * 4 = kwartuurpiek als er vanaf dan 0W actief vermogen zou zijn *)
+	rKwartuurVoorspelling2 := rKwartuurVoorspelling1 + (CurrentActivePower*TIME_TO_REAL(tRestTijd)/900000); (* Eerste berekening + Als huidig actief vermogen zou aangehouden worden voor resterende tijd *)
+
+	IF TIME_TO_REAL(tVerstrekenTijd) > 0 THEN
+		rKwartuurVoorspelling3 := (iWhMeter - iStartWhMeter) * (60/ (TIME_TO_REAL(tVerstrekenTijd)/60000)); (* Extrapolatie van kWh meterstand gelet op de verstreken tijd. Delen door 60000 voor omzetting naar minuten*)
+	END_IF
+
+
+	tonDelayKwartuur(IN:= rKwartuurVoorspelling2 > rMaximaleKwartuurpiek, PT:=t#1m, Q=> bMaximaleKwartuurpiekOverschreiding);
+	IF (rKwartuurVoorspelling2 > rMaximaleKwartuurpiek) AND (TIME_TO_REAL(tRestTijd)/900000 > 0) THEN
+		rGewenstActiefVermogen := (rMaximaleKwartuurpiek - rKwartuurVoorspelling1) / (TIME_TO_REAL(tRestTijd)/900000);
+		IF rGewenstActiefVermogen < 0 THEN
+			rGewenstActiefVermogen := 0;
+		ELSIF rGewenstActiefVermogen > 3000 THEN
+			rGewenstActiefVermogen := 3000;
+		END_IF
+	ELSE
+		rGewenstActiefVermogen := rMaximaleKwartuurpiek;
+	END_IF
+END_IF
+
+IF bMaximaleKwartuurpiekOverschreiding THEN
+	sOverKwartierpiek := CONCAT('Verlaag vermogen naar ', UDINT_TO_STRING(REAL_TO_UDINT(rGewenstActiefVermogen)));
+	sOverKwartierpiek := CONCAT(sOverKwartierpiek, 'W, voorspelde piek ');
+	sOverKwartierpiek := CONCAT(sOverKwartierpiek, UDINT_TO_STRING(REAL_TO_UDINT(rKwartuurVoorspelling2)));
+	sOverKwartierpiek := CONCAT(sOverKwartierpiek, 'W, resterende tijd ');
+	sOverKwartierpiek := CONCAT(sOverKwartierpiek, UDINT_TO_STRING(TIME_TO_UDINT(tRestTijd)/1000));
+	sOverKwartierpiek := CONCAT(sOverKwartierpiek, 's');
+ELSE
+	sOverKwartierpiek := '';
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_LightsKeukenLiving" Id="{fa78343e-c128-43a9-91da-a441109e1c4c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_LightsKeukenLiving
+VAR
+	rtAdsLichtKeukenCentraal		: R_TRIG;
+	rtAdsLichtKeukenSpotsDampkap	: R_TRIG;
+	rtAdsLichtLivingStepUp			: R_TRIG;
+	rtAdsLichtLivingStepDown		: R_TRIG;
+
+	bSwitchLight_I2					: BOOL;
+	bSwitchLight_I3					: BOOL;
+	bSwitchLight_I4					: BOOL;
+	bSwitchLight_I5					: BOOL;
+	bSwitchLight_I7					: BOOL;
+
+	bAanwezigKeukenLiving			: BOOL;
+
+	fbOnOffLight_I3					: FB_OnOffLight;
+	fbOnOffLight_I5					: FB_OnOffLight;
+	fbOnOffLight_I7					: FB_OnOffLight;
+	fbOnOffLight_I8					: FB_OnOffLight;
+
+	(* Centrale verlichting Living *)
+	bDimLightUp_I2					: BOOL;
+	bDimLightDn_I2					: BOOL;
+	bSetDimValue_I2					: BOOL;
+	uiDimValue_I2					: UINT := 7000;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rtAdsLichtKeukenCentraal(CLK:=bAdsLichtKeukenCentraal);
+rtAdsLichtKeukenSpotsDampkap(CLK:=bAdsLichtKeukenSpotsDampkap);
+rtAdsLichtLivingStepUp(CLK:=bAdsLichtLivingStepUp);
+rtAdsLichtLivingStepDown(CLK:=bAdsLichtLivingStepDown);
+
+(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
+bSwitchLight_I3 := bVLight_I3 OR bDK07x3;																	(*Geschakeld Stopcontact hoek Living (K3)*)
+bSwitchLight_I4 := bVLight_I4;																				(*Button+*)
+bSwitchLight_I5 := bVLight_I5 OR bDK04x1 OR bDK05x1 OR bDK07x4 OR bDK03x2 OR rtAdsLichtKeukenCentraal.Q;	(*Licht Kookeiland Centraal*)
+bSwitchLight_I7 := bVLight_I7 OR bDK05x2 OR rtAdsLichtKeukenSpotsDampkap.Q;									(*Licht Spots Dampkap*)
+
+(* Aanwezigheid *)
+IF bNovRamLight_I3 OR bNovRamLight_I4 OR bNovRamLight_I5 OR bNovRamLight_I7 OR fbDimmer_I2.bLight THEN
+	bAanwezigKeukenLiving := TRUE;
+ELSE
+	bAanwezigKeukenLiving := FALSE;
+END_IF
+
+(* Living en Keuken Aan/Uit verlichting*)
+fbOnOffLight_I3(
+	bSwitch:= bSwitchLight_I3,
+	bOn:= ,
+	bOff:= bAllOff OR bAllOffBeneden,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_I3,
+	bLightImpulsRelais=> bRelaisLight_I3);
+
+fbOnOffLight_I5(
+	bSwitch:= bSwitchLight_I5 ,
+	bOn:= (* OR (P_Doors.ftContactSchuifdeurLeefruimte.Q AND bZonOnder AND NOT bAanwezigKeukenLiving)*),
+	bOff:= bAllOff OR bAllOffBeneden,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_I5,
+	bLightImpulsRelais=> bRelaisLight_I5);
+
+fbOnOffLight_I7(
+	bSwitch:= bSwitchLight_I7,
+	bOn:= ,
+	bOff:= bAllOff OR bAllOffBeneden,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_I7,
+	bLightImpulsRelais=> bRelaisLight_I7);
+
+
+(* Dimmers *)
+bDimLightUp_I2 := bVLight_I2 OR bDK07x1;											(*Licht Living Centraal*)
+bDimLightDn_I2 := bDK07x2;
+
+fbDimmer_I2(
+	bSwitchDimmUp:= bDimLightUp_I2,
+	bSwitchDimmDown:= bDimLightDn_I2,
+	bOn:=  ,
+	bOff:= bAllOff OR bAllOffBeneden,
+	bSwitchSetpUp := rtAdsLichtLivingStepUp.Q,
+	bSwitchSetpDown := rtAdsLichtLivingStepDown.Q,
+	bSetDimmValue:= bSetDimValue_I2 ,
+	nDimmValue:= uiDimValue_I2,
+	tSwitchOverTime:= t#400ms,
+	tDimmTime:= tDimmerTijd,
+	bMemoryModeOn:= TRUE,
+	nOnValueWithoutMemoryMode:= ,
+	bDimmOnMode:= ,
+	tDimmOnTime:= ,
+	bDimmOffMode:= ,
+	tDimmOffTime:= ,
+	nOutMin:= 3500,
+	nOutMax:= 27000,
+	nSavedOut := nDimmValue_I2,
+	nOut=> DimLight_I2,
+	bLight=> );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

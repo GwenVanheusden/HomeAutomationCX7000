@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Watermeting" Id="{f4cc9918-b64e-409c-be2e-9430a2491d79}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Watermeting
+VAR
+	ftWaterSensor		: F_TRIG;
+	tonWatermeting		: TON;
+	bWatermetingActief	: BOOL;
+	rWaterBerekening	: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ftWaterSensor(CLK:= bWaterSensor , Q=> );
+
+(************************************************************************************************************************)
+(************************************************ WATER *************************************************************)
+(************************************************************************************************************************)
+IF ftWaterSensor.Q THEN
+	diWaterteller := diWaterteller + 1;
+	(*Stored_Energy[11] := Stored_Energy[11] + 1;	(* Stand watermeter, was vroeger rTotalWaterCounter *)
+	rTotalWaterCounter := Stored_Energy[11];*)
+END_IF
+
+(* Dagelijks verbruik *)
+IF bMiddernacht THEN
+	diWatertellerGisteren := diWaterteller;
+END_IF
+diWaterverbruikVandaag := diWaterteller - diWatertellerGisteren;
+
+(* Liter per uur berekening*)
+tonWatermeting(IN:= bWatermetingActief, PT:=t#1m );
+
+IF ftWaterSensor.Q AND tonWatermeting.ET = t#0ms THEN
+	bWatermetingActief := TRUE;
+ELSIF ftWaterSensor.Q AND bWatermetingActief AND tonWatermeting.ET > t#0ms THEN
+	rWaterBerekening := 60000.0 / TIME_TO_UDINT(tonWatermeting.ET);
+	(* Berekening waterverbruik per minuut:
+										   1Puls = 1Liter
+										   1Liter / ElapsedTime(ms) = L/ms * 60000 = L/min            *)
+
+	(* Reset timer voor volgende meting *)
+	tonWatermeting(IN:= FALSE );
+END_IF
+
+(* Reset na aflopen van de timer, tijd is te lang tussen 2 pulsen *)
+IF  tonWatermeting.Q THEN
+	bWatermetingActief := FALSE;
+	rWaterBerekening := 0;
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

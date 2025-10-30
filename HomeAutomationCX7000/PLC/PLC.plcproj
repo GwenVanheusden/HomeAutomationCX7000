@@ -74,6 +74,60 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\00-MAIN\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01-System\P_SunriseSunset.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01-System\P_WinTime.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\02-Knoppen\P_Doors.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\02-Knoppen\P_Drukknoppen.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03-Verlichting\P_LightsBerging.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03-Verlichting\P_LightsBoven.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03-Verlichting\P_LightsBuiten.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03-Verlichting\P_LightsHal.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03-Verlichting\P_LightsKeukenLiving.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03-Verlichting\P_LightsLeefruimte.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04-Boiler\P_Boiler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05-Temperaturen\P_Temperatures.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06-Screens\P_Screens.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07-Draaipoort\P_Draaipoort.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08-Energiemetingen\P_Kwartierpiek.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08-Energiemetingen\P_Watermeting.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\09-IoT\P_Sonos.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\100-FB%27s\FB_Dimmer.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -84,9 +138,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\100-FB%27s\FB_Screens.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -103,6 +154,16 @@
     <Folder Include="GVLs\08-Energiemetingen" />
     <Folder Include="GVLs\90-Visualisatie" />
     <Folder Include="POUs\100-FB%27s" />
+    <Folder Include="POUs\00-MAIN" />
+    <Folder Include="POUs\01-System" />
+    <Folder Include="POUs\03-Verlichting" />
+    <Folder Include="POUs\02-Knoppen" />
+    <Folder Include="POUs\04-Boiler" />
+    <Folder Include="POUs\07-Draaipoort" />
+    <Folder Include="POUs\06-Screens" />
+    <Folder Include="POUs\05-Temperaturen" />
+    <Folder Include="POUs\08-Energiemetingen" />
+    <Folder Include="POUs\09-IoT" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

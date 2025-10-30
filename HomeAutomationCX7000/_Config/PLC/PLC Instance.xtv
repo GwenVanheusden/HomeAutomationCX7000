@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19" ClassName="CTComPlcObjDef">
-	<Instance TmcHash="{C2C4B041-28C1-7A06-6958-7C669AA85B38}">
+	<Instance TmcHash="{7BF6AD15-DB24-4581-64C7-5D78D2C4A21C}">
 		<Vars VarGrpType="1">
 			<Name>PlcTask Inputs</Name>
 			<Var>
@@ -512,18 +512,18 @@
 		<Vars VarGrpType="2" AreaNo="1">
 			<Name>PlcTask Outputs</Name>
 			<Var>
+				<Name>GVL_Drukknoppen.bMeldingDK02x1</Name>
+				<Comment><![CDATA[********************************************************************
+********************** MELDING DRUKKNOPPEN ************
+********************************************************************]]></Comment>
+				<Type>BOOL</Type>
+			</Var>
+			<Var>
 				<Name>GVL_Drukknoppen.bMeldingDK11x3</Name>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
 				<Name>GVL_Drukknoppen.bMeldingDK11x4</Name>
-				<Type>BOOL</Type>
-			</Var>
-			<Var>
-				<Name>GVL_Drukknoppen.bMeldingDK02x1</Name>
-				<Comment><![CDATA[********************************************************************
-********************** MELDING DRUKKNOPPEN ************
-********************************************************************]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>

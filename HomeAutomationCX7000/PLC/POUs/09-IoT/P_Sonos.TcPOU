@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Sonos" Id="{7c9fc066-933c-4f27-b1b3-b85bafb5e73f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Sonos
+VAR
+	(* SONOS BADKAMER *)
+	tpSonosBadkamerPause		: TP;
+	tpSonosBadkamerPlaylist1	: TP;
+	tpSonosBadkamerPlaylist2	: TP;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* SONOS BADKAMER *)
+tpSonosBadkamerPause(IN:= NOT bNovRamLight_W5 AND NOT bNovRamLight_W7 , PT:= T#300MS , Q=> bAdsSonosBadkamerPause , ET=> );
+tpSonosBadkamerPlaylist1(IN:= fbShortLongClick12x3.bShortPress1 , PT:= T#300MS, Q=> bAdsSonosBadkamerPlaylist1 , ET=> );
+tpSonosBadkamerPlaylist2(IN:= fbShortLongClick12x3.bShortPress2 , PT:= t#300ms, Q=> bAdsSonosBadkamerPlaylist2 , ET=> );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

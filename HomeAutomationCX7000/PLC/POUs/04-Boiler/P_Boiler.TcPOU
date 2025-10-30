@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Boiler" Id="{d6afd0fa-1a48-43c8-91c7-a75759ddbc32}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Boiler
+VAR
+	bBoilerOn		: BOOL;
+	bBoilerOff		: BOOL;
+	bVBoilerSwitch	: BOOL;
+	fbOnOffBoiler	: FB_OnOffLight;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbOnOffBoiler(
+	bSwitch:= bVBoilerSwitch OR bAdsBoilerOnOff,
+	bOn:= bBoilerOn OR (todWinTime = tod#13:00 AND P_Temperatures.rTempBoiler < 55),
+	bOff:= bBoilerOff,
+	bAutoOff:= TRUE,
+	tAutoOffTime:= t#4h,
+	bLightNovRam:= bNovRamBoiler,
+	bLightImpulsRelais=> bRelaisBoiler);
+
+bAdsBoilerState := bNovRamBoiler;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

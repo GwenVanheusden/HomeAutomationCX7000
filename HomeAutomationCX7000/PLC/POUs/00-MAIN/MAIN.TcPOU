@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{61422c51-83de-45d6-9242-5ca335c20301}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[P_SunriseSunset();
+P_WinTime();
+
+P_Doors();
+P_Drukknoppen();
+
+P_LightsBerging();
+P_LightsBoven();
+P_LightsBuiten();
+P_LightsHal();
+P_LightsKeukenLiving();
+P_LightsLeefruimte();
+
+P_Boiler();
+
+P_Temperatures();
+
+P_Screens();
+
+P_Draaipoort();
+
+P_Kwartierpiek();
+P_Watermeting();
+
+P_Sonos();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

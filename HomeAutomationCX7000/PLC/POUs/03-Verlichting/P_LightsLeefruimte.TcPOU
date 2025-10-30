@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_LightsLeefruimte" Id="{d75bae9a-8c2e-469f-99e2-17da4535d30f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_LightsLeefruimte
+VAR
+	bSwitchLight_Y1	: BOOL;
+	bSwitchLight_Y2	: BOOL;
+	bSwitchLight_Y3	: BOOL;
+(*	bSwitchLight_Y4	: BOOL;
+	bSwitchLight_Y5	: BOOL;
+	bSwitchLight_Y6	: BOOL;
+	bSwitchLight_Y7	: BOOL; *)
+
+
+	fbOnOffLight_Y1	: FB_OnOffLight;
+	fbOnOffLight_Y2	: FB_OnOffLight;
+	fbOnOffLight_Y3	: FB_OnOffLight;
+	fbOnOffLight_Y5	: FB_OnOffLight;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bSwitchLight_Y1 := bVLight_Y1 OR bDK09x3;						(*Leefruimte Spots Barkast*)
+bSwitchLight_Y2 := bVLight_Y2 OR bDK09x1 OR bDK10x1 OR bDK04x2;	(*Leefruimte Centraal eettafel*)
+bSwitchLight_Y3 := bVLight_Y3 OR bDK09x2;						(*Leefruimte Spots zithoek*)
+
+
+fbOnOffLight_Y1(
+	bSwitch:= bSwitchLight_Y1,
+	bOn:= ,
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Y1,
+	bLightImpulsRelais=> bRelaisLight_Y1);
+
+fbOnOffLight_Y2(
+	bSwitch:= bSwitchLight_Y2,
+	bOn:= ,
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Y2,
+	bLightImpulsRelais=> bRelaisLight_Y2);
+
+fbOnOffLight_Y3(
+	bSwitch:= bSwitchLight_Y3,
+	bOn:= ,
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Y3,
+	bLightImpulsRelais=> bRelaisLight_Y3);
+
+
+(* Up/Down spots muur leefruimte *)
+fbOnOffLight_Y5(
+	bSwitch:= ,
+	bOn:= P_SunriseSunset.bSunsetPulse,
+	bOff:= P_SunriseSunset.bSunrisePulse OR bAllOffBeneden,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_Y5,
+	bLightImpulsRelais=> bRelaisLight_Y5);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

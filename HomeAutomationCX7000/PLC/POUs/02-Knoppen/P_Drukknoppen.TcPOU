@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Drukknoppen" Id="{4639002f-3eea-4d78-924f-64a220f71cb0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Drukknoppen
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbShortLongClick12x3(bInput:= bDK12x3 );
+fbShortLongClick21x3(bInput:= bDK21x3 );
+fbShortLongClick22x3(bInput:= bDK22x3 );
+fbShortLongClick22x4(bInput:= bDK22x4 );
+fbShortLongClick30x1(bInput:= bDK30x1 );
+fbShortLongClick30x2(bInput:= bDK30x2 );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

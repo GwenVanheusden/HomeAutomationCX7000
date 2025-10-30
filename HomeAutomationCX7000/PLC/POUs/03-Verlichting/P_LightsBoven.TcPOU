@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_LightsBoven" Id="{c0df4e55-d7a7-4b11-9d41-eaa3f7d35910}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_LightsBoven
+VAR
+	(*bSwitchLight_J1: BOOL;*)
+	(*bSwitchLight_J2: BOOL;*)
+	bSwitchLight_J3		: BOOL;
+	bSwitchLight_J4		: BOOL;
+	bSwitchLight_W5		: BOOL;
+	bSwitchLight_W6		: BOOL;
+	bSwitchLight_W7		: BOOL;
+	bSwitchLight_W8		: BOOL;
+	bSwitchLight_BD2	: BOOL;
+	bSwitchLight_BD3	: BOOL;
+	bSwitchLight_BD4	: BOOL;
+	bSwitchLight_BD5	: BOOL;
+	bSwitchLight_BD6	: BOOL;
+
+	bDimLightUp_J3		: BOOL;
+	bDimLightDn_J3		: BOOL;
+	bSetDimValue_J3		: BOOL;
+	uiDimValue_J3		: UINT := 32767;
+	tpDoubleTap_J3		: TP;
+	iDoubleTap_J3		: INT := 0;
+
+	uiDimValue_BD1		: UINT := 7000;
+	uiDimValue_J1		: UINT := 7000;
+	uiDimValue_J2		: UINT := 7000;
+
+	fbOnOffLight_J1		: FB_OnOffLight;
+	(*fbOnOffLight_J2	: FB_OnOffLight;*)
+	fbOnOffLight_J3		: FB_OnOffLight;
+	fbOnOffLight_J4		: FB_OnOffLight;
+	fbOnOffLight_W5		: FB_OnOffLight;
+	fbOnOffLight_W6		: FB_OnOffLight;
+	fbOnOffLight_W7		: FB_OnOffLight;
+	fbOnOffLight_W8		: FB_OnOffLight;
+	fbOnOffLight_BD2	: FB_OnOffLight;
+	fbOnOffLight_BD3	: FB_OnOffLight;
+	fbOnOffLight_BD4	: FB_OnOffLight;
+	fbOnOffLight_BD5	: FB_OnOffLight;
+	fbOnOffLight_BD6	: FB_OnOffLight;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
+(* Verdiep *)
+(*bSwitchLight_J1 := bVLight_J1 OR bDK16x1;									(*Licht Slaapkamer 3*)*)
+(*bSwitchLight_J2 := bVLight_J2 OR bDK15x1;									(*Licht Slaapkamer 2*)*)
+bSwitchLight_J3 := bVLight_J3 OR bDK14x1 OR bDK13x1;						(*Licht Slaapkamer 1*)
+bSwitchLight_J4 := bVLight_J4 OR bDK13x2;									(*Licht Spots Slaapkamer 1*)
+bSwitchLight_W5 := bVLight_W5 OR bDK12x2;									(*Licht Douche*)
+(*bSwitchLight_W6 := bSwitchLight_W7;	*)									(*Licht WC Badkamer*)
+bSwitchLight_W7 := bVLight_W7 OR bDK11x3 OR bDK12x1;						(*Licht Centraal Badkamer*)
+bSwitchLight_W8 := bVLight_W8 OR bDK11x4;									(*Licht Technische Ruimte*)
+
+bSwitchLight_BD2 := bDK17x3 OR bDK19x1 OR bDK20x1;							(*Licht kleerkast Slaapkamer 1*)
+bSwitchLight_BD3 := bDK17x4 OR bDK19x2 OR bDK20x2;							(*Licht dressoir Slaapkamer 1*)
+bSwitchLight_BD4 := bDK21x2;												(*Licht bad*)
+bSwitchLight_BD5 := bDK21x1 OR bDK22x1;										(*Licht badkamer 2*)
+
+(* Melding *)
+bMeldingDK11x3 := bNovRamLight_W5 OR bNovRamLight_W7;
+bMeldingDK11x4 := bNovRamLight_W8;
+
+(* Verdiep *)
+fbDimmer_J1(
+	bSwitchDimmUp:= bDK16x1,
+	bSwitchDimmDown:= bDK16x2,
+	bOn:=  ,
+	bOff:= bAllOff,
+	bSwitchSetpUp := ,
+	bSwitchSetpDown := ,
+	bSetDimmValue:=  ,
+	nDimmValue:= uiDimValue_J1,
+	tSwitchOverTime:= t#400ms,
+	tDimmTime:= tDimmerTijd,
+	bMemoryModeOn:= TRUE,
+	nOnValueWithoutMemoryMode:= ,
+	bDimmOnMode:= ,
+	tDimmOnTime:= ,
+	bDimmOffMode:= ,
+	tDimmOffTime:= ,
+	nOutMin:= 3500,
+	nOutMax:= 32767,
+	nSavedOut := nDimmValue_J1,
+	nOut=> DimLight_J1,
+	bLight=> );
+(*
+fbOnOffLight_J1(
+	bSwitch:= bSwitchLight_J1,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_J1,
+	bLightImpulsRelais=> bRelaisLight_J1,
+	bLightNormalRelais=> );
+*)
+fbDimmer_J2(
+	bSwitchDimmUp:= bDK15x1,
+	bSwitchDimmDown:= bDK15x2,
+	bOn:=  ,
+	bOff:= bAllOff,
+	bSwitchSetpUp := ,
+	bSwitchSetpDown := ,
+	bSetDimmValue:=  ,
+	nDimmValue:= uiDimValue_J2,
+	tSwitchOverTime:= t#400ms,
+	tDimmTime:= tDimmerTijd,
+	bMemoryModeOn:= TRUE,
+	nOnValueWithoutMemoryMode:= ,
+	bDimmOnMode:= ,
+	tDimmOnTime:= ,
+	bDimmOffMode:= ,
+	tDimmOffTime:= ,
+	nOutMin:= 3500,
+	nOutMax:= 32767,
+	nSavedOut := nDimmValue_J2,
+	nOut=> DimLight_J2,
+	bLight=> );
+(*
+fbOnOffLight_J2(
+	bSwitch:= bSwitchLight_J2,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_J2,
+	bLightImpulsRelais=> bRelaisLight_J2,
+	bLightNormalRelais=> );
+*)
+fbOnOffLight_J3(
+	bSwitch:= bSwitchLight_J3,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_J3,
+	bLightImpulsRelais=> bRelaisLight_J3,
+	bLightNormalRelais=> );
+
+fbOnOffLight_J4(
+	bSwitch:= bSwitchLight_J4,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_J4,
+	bLightImpulsRelais=> bRelaisLight_J4,
+	bLightNormalRelais=> );
+
+fbOnOffLight_W5(
+	bSwitch:= bSwitchLight_W5,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_W5,
+	bLightImpulsRelais=> bRelaisLight_W5,
+	bLightNormalRelais=> );
+
+fbOnOffLight_W6(
+	bSwitch:= ,
+	bOn:= ,
+	bOff:= ,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_W6,
+	bLightImpulsRelais=> bRelaisLight_W6,
+	bLightNormalRelais=> );
+
+fbOnOffLight_W7(
+	bSwitch:= bSwitchLight_W7,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_W7,
+	bLightImpulsRelais=> bRelaisLight_W7,
+	bLightNormalRelais=> );
+bRelaisLight_W6 := bRelaisLight_W7;
+
+fbOnOffLight_W8(
+	bSwitch:= bSwitchLight_W8,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_W8,
+	bLightImpulsRelais=> bRelaisLight_W8,
+	bLightNormalRelais=> );
+
+fbOnOffLight_BD2(
+	bSwitch:= bSwitchLight_BD2,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_BD2,
+	bLightImpulsRelais=> bRelaisLight_BD2,
+	bLightNormalRelais=> );
+
+fbOnOffLight_BD3(
+	bSwitch:= bSwitchLight_BD3,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_BD3,
+	bLightImpulsRelais=> bRelaisLight_BD3,
+	bLightNormalRelais=> );
+
+fbOnOffLight_BD4(
+	bSwitch:= bSwitchLight_BD4,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_BD4,
+	bLightImpulsRelais=> bRelaisLight_BD4,
+	bLightNormalRelais=> );
+
+fbOnOffLight_BD5(
+	bSwitch:= bSwitchLight_BD5,
+	bOn:= ,
+	bOff:= bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_BD5,
+	bLightImpulsRelais=> bRelaisLight_BD5,
+	bLightNormalRelais=> );
+
+
+
+fbDimmer_BD1(
+	bSwitchDimmUp:= bDK17x1 OR bDK18x1 OR bDK13x4,
+	bSwitchDimmDown:= bDK17x2 OR bDK18x2,
+	bOn:= ,
+	bOff:= bAllOff,
+	bSwitchSetpUp := ,
+	bSwitchSetpDown := ,
+	bSetDimmValue:=  ,
+	nDimmValue:= uiDimValue_BD1,
+	tSwitchOverTime:= t#400ms,
+	tDimmTime:= tDimmerTijd,
+	bMemoryModeOn:= TRUE,
+	nOnValueWithoutMemoryMode:= ,
+	bDimmOnMode:= ,
+	tDimmOnTime:= ,
+	bDimmOffMode:= ,
+	tDimmOffTime:= ,
+	nOutMin:= 3500,
+	nOutMax:= 32767,
+	nSavedOut := nDimmValue_BD1,
+	nOut=> DimLight_BD1,
+	bLight=> );
+
+	(*
+	LampSwitchJ1(bSwitch:= bSwitchLight_J1, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 10, stOnOffLight => Light_J1 );
+	LampSwitchJ2(bSwitch:= bSwitchLight_J2, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 11, stOnOffLight => Light_J2 );
+	(*LampSwitchJ3(bSwitch:= bSwitchLight_J3, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 12, stOnOffLight => Light_J3 );*)
+	LampSwitchJ4(bSwitch:= bSwitchLight_J4, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 13, stOnOffLight => Light_J4 );
+	LampSwitchW5(bSwitch:= bSwitchLight_W5, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 16, stOnOffLight => Light_W5 );
+	LampSwitchW6(bSwitch:= bSwitchLight_W6, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 17, stOnOffLight => Light_W6 );
+	LampSwitchW7(bSwitch:= bSwitchLight_W7, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 18, stOnOffLight => Light_W7 );
+	LampSwitchW8(bSwitch:= bSwitchLight_W8, bOn:= , bOff:= bAllOff, bResetTime:= bVResetTimes, iArrayLocation:= 19, stOnOffLight => Light_W8 );
+
+	*)
+
+
+(*
+	(*Licht Slaapkamer 1*)
+	CASE iDoubleTap_J3 OF
+	0:
+		bSetDimValue_J3 := FALSE;
+		tpDoubleTap_J3(IN:= FALSE );
+
+		bDimLightUp_J3 := bDK13x1 OR bDK14x1;
+
+		IF (ftDK13x1.Q OR ftDK14x1.Q) THEN
+			iDoubleTap_J3 := 1;
+		END_IF
+
+	1:
+		tpDoubleTap_J3(IN:= TRUE, PT:= t#500ms, Q=> , ET=> );
+
+		IF rtDK13x1.Q OR rtDK14x1.Q THEN
+			bSetDimValue_J3 := TRUE;
+		ELSIF (ftDK13x1.Q OR ftDK14x1.Q) OR NOT tpDoubleTap_J3.Q THEN
+			iDoubleTap_J3 := 0;
+		END_IF
+	END_CASE
+
+	bDimLightDn_J3 :=  bDK14x2 OR bDK13x2;
+
+	fbDimmer_J3(
+		bSwitchDimmUp:= bDimLightUp_J3,
+		bSwitchDimmDown:= bDimLightDn_J3,
+		bOn:= ,
+		bOff:= bAllOff,
+		bSetDimmValue:= bSetDimValue_J3,
+		nDimmValue:= uiDimValue_J3,
+		tSwitchOverTime:= t#200ms,
+		tDimmTime:= tDimmerTijd,
+		bMemoryModeOn:= TRUE,
+		nOnValueWithoutMemoryMode:= , 
+		bDimmOnMode:= ,
+		tDimmOnTime:= , 
+		bDimmOffMode:= ,
+		tDimmOffTime:= ,
+		nOutMin:= 5000,
+		nOutMax:= 32767,
+		nOut=> DimLight_J3,
+		bLight=> );
+
+*)]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_WinTime" Id="{f15c1a42-3dc9-4fb5-bbe2-f339d7c87bb5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_WinTime
+VAR
+	GetLocalSystemTime	: FB_LocalSystemTime;
+	bEnable				: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GetLocalSystemTime(
+	sNetID:= ,
+	bEnable:= bEnable,
+	dwCycle:= ,
+	dwOpt:= ,
+	tTimeout:= ,
+	bValid=> bValidSystemTime,
+	systemTime=>strWinTime ,
+	tzID=> );
+
+todWinTime := LREAL_TO_TOD(strWinTime.wHour*3600000 + strWinTime.wMinute*60000 + strWinTime.wSecond*1000);
+
+sTime := 	CONCAT(	CONCAT(WORD_TO_STRING(strWinTime.wHour),':'),
+					CONCAT(
+								CONCAT(WORD_TO_STRING(strWinTime.wMinute),':'),
+								WORD_TO_STRING(strWinTime.wSecond)
+							)
+				);
+
+sDate :=	CONCAT(	CONCAT(WORD_TO_STRING(strWinTime.wYear),'-'),
+					CONCAT(
+								CONCAT(WORD_TO_STRING(strWinTime.wMonth),'-'),
+								WORD_TO_STRING(strWinTime.wDay)
+							)
+				);
+
+bMiddernacht := todWinTime = TOD#00:00:00;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

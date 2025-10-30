@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_SunriseSunset" Id="{8b91c887-ecff-4544-8b69-d0aeb75273c2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_SunriseSunset
+VAR
+	bSunsetPulse		: BOOL;
+	bSunrisePulse		: BOOL;
+
+	rtSunset			: R_TRIG;
+	ftSunset			: F_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rtSunset(CLK:=bAdsSunIsDown, Q=>bSunsetPulse);
+ftSunset(CLK:=bAdsSunIsDown, Q=>bSunrisePulse);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_LightsHal" Id="{24b7fee6-6a23-438f-8d29-d07801446274}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_LightsHal
+VAR
+	bSwitchLight_I1	: BOOL;
+	bSwitchLight_J5	: BOOL;
+	bSwitchLight_J6	: BOOL;
+
+	fbOnOffLight_I1	: FB_OnOffLight;
+	fbOnOffLight_J5	: FB_OnOffLight;
+	fbOnOffLight_J6	: FB_OnOffLight;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
+(* Hal en Traphal *)
+bSwitchLight_I1 := bVLight_I1 OR bDK08x1;													(*Licht Hal*)
+bSwitchLight_J5 := bVLight_J5 OR bDK08x3 OR bDK11x1 OR bDK14x3;							(*Licht Spots Traphal plafond*)
+bSwitchLight_J6 := bVLight_J6 OR bDK08x2;												(*Licht Spots Traphal wand*)
+
+(* Hal en Traphal *)
+fbOnOffLight_I1(
+	bSwitch:= bSwitchLight_I1,
+	(*bOn:=  (P_Doors.ftContactVoordeur.Q AND bZonOnder),*)
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_I1,
+	bLightImpulsRelais=> bRelaisLight_I1);
+
+fbOnOffLight_J5(
+	bSwitch:= bSwitchLight_J5,
+	bOn:= ,
+	bOff:= bAllOffBeneden OR bAllOff,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_J5,
+	bLightImpulsRelais=> bRelaisLight_J5);
+
+fbOnOffLight_J6(
+	bSwitch:= bSwitchLight_J6,
+	bOn:= P_SunriseSunset.bSunsetPulse,
+	bOff:= P_SunriseSunset.bSunrisePulse,
+	bAutoOff:= ,
+	tAutoOffTime:= ,
+	bLightNovRam:= bNovRamLight_J6,
+	bLightImpulsRelais=> bRelaisLight_J6);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

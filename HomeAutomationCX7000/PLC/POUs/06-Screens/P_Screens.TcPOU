@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_Screens" Id="{ee50d826-655a-4988-b5c2-52745ead8f20}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Screens
+VAR
+	bScreen1Omhoog				: BOOL;
+	bScreen1Omlaag				: BOOL;
+	bScreen2Omhoog				: BOOL;
+	bScreen2Omlaag				: BOOL;
+	bScreen3Omhoog				: BOOL;
+	bScreen3Omlaag				: BOOL;
+	bScreen4Omhoog				: BOOL;
+	bScreen4Omlaag				: BOOL;
+	bRolluik1Omhoog				: BOOL;
+	bRolluik1Omlaag				: BOOL;
+	bRolluik2Omhoog				: BOOL;
+	bRolluik2Omlaag				: BOOL;
+	bRolluik3Omhoog				: BOOL;
+	bRolluik3Omlaag				: BOOL;
+
+	fbScreen1					: FB_Screens;
+	fbScreen2					: FB_Screens;
+	fbScreen3					: FB_Screens;
+	fbScreen4					: FB_Screens;
+	fbRolluik1					: FB_Screens;
+	fbRolluik2					: FB_Screens;
+	fbRolluik3					: FB_Screens;
+
+	bAutomaticScreens			: BOOL;
+	rtAutomaticScreens			: R_TRIG;
+
+	bBeveiligingHogeWindsnelheidActief	: BOOL;
+
+	tpAutomaticScreen123Up		: TP;
+	tpAutomaticScreen123Dn		: TP;
+	tpAutomaticScreen4Up		: TP;
+	tpAutomaticScreen4Dn		: TP;
+	tpAutomaticRolluik1Dn		: TP;
+	tpAutomaticRolluik2Dn		: TP;
+	tpAutomaticRolluik3Dn		: TP;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bScreen1Omhoog := bDK04x3 (*OR tpAutomaticScreen123Up.Q*);
+bScreen1Omlaag := bDK04x4 (*OR (tpAutomaticScreen123Dn.Q AND bAutomaticScreens)*);
+bScreen2Omhoog := bDK10x5 (*OR tpAutomaticScreen123Up.Q*);
+bScreen2Omlaag := bDK10x6 (*OR tpAutomaticScreen123Dn.Q*);
+bScreen3Omhoog := bDK04x3 (*OR tpAutomaticScreen123Up.Q*);
+bScreen3Omlaag := bDK04x4 (*OR (tpAutomaticScreen123Dn.Q AND bAutomaticScreens)*);
+bScreen4Omhoog := bDK04x5 (*OR tpAutomaticScreen4Up.Q*);
+bScreen4Omlaag := bDK04x6 (*OR (tpAutomaticScreen4Dn.Q AND bAutomaticScreens)*);
+
+
+bRolluik1Omhoog := bDK17x5 OR bDK18x3 OR bDK19x5;
+bRolluik1Omlaag := bDK17x6 OR bDK18x4 OR bDK19x6 OR (tpAutomaticRolluik1Dn.Q AND bAutomaticScreens);
+bRolluik2Omhoog := bDK16x3 ;
+bRolluik2Omlaag := bDK16x4 OR (tpAutomaticRolluik2Dn.Q AND bAutomaticScreens);
+bRolluik3Omhoog := bDK15x3 ;
+bRolluik3Omlaag := bDK15x4 OR (tpAutomaticRolluik3Dn.Q AND bAutomaticScreens);
+
+(* Screen Links van Schuifraam *)
+fbScreen1(
+	bUp:=  bAdsScreen13Up OR bAdsAllScreensUp,
+	bDown:= bAdsScreen13Dn OR bAdsAllScreensDn,
+	bStop:=  ,
+	bSwitchOverUp:= bScreen1Omhoog ,
+	bSwitchOverDown:= bScreen1Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= (*P_Windmeter.bHogeWindsnelheid AND *) bBeveiligingHogeWindsnelheidActief,
+	tTurnOffTime:= t#22s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorScreen1Omhoog,
+	bBlindDown=> bMotorScreen1Omlaag );
+
+(* Screen Schuifraam *)
+fbScreen2(
+	bUp:= (*fbShortLongClick30x1.bLongPress1 OR*) bAdsScreen2Up OR bAdsAllScreensUp,
+	bDown:= bAdsScreen2Dn OR bAdsAllScreensDn,
+	bStop:=  ,
+	bSwitchOverUp:= bScreen2Omhoog ,
+	bSwitchOverDown:= bScreen2Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= (*P_Windmeter.bHogeWindsnelheid AND *) bBeveiligingHogeWindsnelheidActief,
+	tTurnOffTime:= t#22s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorScreen2Omhoog,
+	bBlindDown=> bMotorScreen2Omlaag );
+
+(* Screen Rechts van Schuifraam *)
+fbScreen3(
+	bUp:= bAdsScreen13Up OR bAdsAllScreensUp,
+	bDown:= bAdsScreen13Dn OR bAdsAllScreensDn,
+	bStop:=  ,
+	bSwitchOverUp:= bScreen3Omhoog ,
+	bSwitchOverDown:= bScreen3Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= (*P_Windmeter.bHogeWindsnelheid AND *) bBeveiligingHogeWindsnelheidActief,
+	tTurnOffTime:= t#22s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorScreen3Omhoog,
+	bBlindDown=> bMotorScreen3Omlaag );
+
+(* Screen lange venster *)
+fbScreen4(
+	bUp:= bAdsScreen4Up OR bAdsAllScreensUp,
+	bDown:= bAdsScreen4Dn OR bAdsAllScreensDn,
+	bStop:=  ,
+	bSwitchOverUp:= bScreen4Omhoog ,
+	bSwitchOverDown:= bScreen4Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= (*P_Windmeter.bHogeWindsnelheid AND *) bBeveiligingHogeWindsnelheidActief,
+	tTurnOffTime:= t#8s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorScreen4Omhoog,
+	bBlindDown=> bMotorScreen4Omlaag );
+
+(* Rolluik Slaapkamer mama papa *)
+fbRolluik1(
+	bUp:= ,
+	bDown:= ,
+	bStop:=  ,
+	bSwitchOverUp:= bRolluik1Omhoog ,
+	bSwitchOverDown:= bRolluik1Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= ,
+	tTurnOffTime:= t#27s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorRolluik1Omhoog,
+	bBlindDown=> bMotorRolluik1Omlaag );
+
+
+(* Rolluik Slaapkamer Lukas *)
+fbRolluik2(
+	bUp:= ,
+	bDown:= ,
+	bStop:=  ,
+	bSwitchOverUp:= bRolluik2Omhoog ,
+	bSwitchOverDown:= bRolluik2Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= ,
+	tTurnOffTime:= t#27s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorRolluik2Omhoog,
+	bBlindDown=> bMotorRolluik2Omlaag );
+
+
+(* Rolluik Slaapkamer Elena *)
+fbRolluik3(
+	bUp:= ,
+	bDown:= ,
+	bStop:=  ,
+	bSwitchOverUp:= bRolluik3Omhoog ,
+	bSwitchOverDown:= bRolluik3Omlaag ,
+	tSwitchOverTime:= t#500ms,
+	bStepUp:= ,
+	bStepDown:= ,
+	tStepTime:= ,
+	bShadowPosition:= ,
+	tShadowTurnAroundTime:= ,
+	tShadowTurnOffTime:= ,
+	bSafetyPosition:= ,
+	tTurnOffTime:= t#27s,
+	tSwitchOverDeadTime:= t#1s,
+	bBlindUp=> bMotorRolluik3Omhoog,
+	bBlindDown=> bMotorRolluik3Omlaag );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
