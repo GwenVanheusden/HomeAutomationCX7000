@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_IoT_Communicator" Id="{5ae70c63-242c-4cf4-930a-c4e7f109a667}">
+    <Declaration><![CDATA[TYPE ST_IoT_Communicator :
+STRUCT
+	{attribute 'iot.DisplayName' := 'Actief Vermogen'}
+	{attribute 'iot.Unit' := 'W'}
+	{attribute 'iot.ReadOnly' := 'TRUE'}
+	{attribute 'iot.DecimalPrecision' := '1'}
+	rActiefVermogen	: REAL;
+	
+	{attribute 'iot.DisplayName' := 'Keuken'}
+    bLampKeuken : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

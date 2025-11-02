@@ -15,19 +15,18 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bAllOffBeneden := bDK07x5 OR bDK01x5;
+      <ST><![CDATA[
+//Berging en Koele berging
+bSwitchLight_W1 := bVLight_W1 OR bDK02x1;					//Licht WC
+bSwitchLight_W2 := bVLight_W2 OR bDK03x3;					//Licht Berging Spots boven lavabo
+bSwitchLight_W3 := bVLight_W3 OR bDK01x1 OR bDK03x1;		//Licht Berging Centraal
+bSwitchLight_W4 := bVLight_W4 OR bDK03x4;					//Licht Koele berging
+bAllOffBeneden 	:= bDK07x5 OR bDK01x5;
 
-(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
-(* Berging en Koele berging *)
-bSwitchLight_W1 := bVLight_W1 OR bDK02x1;					(*Licht WC*)
-bSwitchLight_W2 := bVLight_W2 OR bDK03x3;					(*Licht Berging Wand*)
-bSwitchLight_W3 := bVLight_W3  OR bDK01x1 OR bDK03x1;		(*Licht Berging Centraal*)
-bSwitchLight_W4 := bVLight_W4 OR bDK03x4;					(*Licht Koele berging*)
-
-(* Melding WC *)
+//Melding WC
 bMeldingDK02x1 := fbOnOffLight_W1.bLightNormalRelais;
 
-(* Berging en Koele berging *)
+//Licht WC
 fbOnOffLight_W1(
 	bSwitch:= bSwitchLight_W1,
 	bOn:= ,
@@ -38,6 +37,7 @@ fbOnOffLight_W1(
 	bLightImpulsRelais=> bRelaisLight_W1,
 	bLightNormalRelais=> );
 
+//Licht Berging Spots boven lavabo
 fbOnOffLight_W2(
 	bSwitch:= bSwitchLight_W2,
 	bOn:= ,
@@ -48,6 +48,7 @@ fbOnOffLight_W2(
 	bLightImpulsRelais=> bRelaisLight_W2,
 	bLightNormalRelais=> );
 
+//Licht Berging Centraal
 fbOnOffLight_W3(
 	bSwitch:= bSwitchLight_W3,
 	bOn:= (P_Doors.ftContactZijdeur.Q AND bAdsSunIsDown),
@@ -58,6 +59,7 @@ fbOnOffLight_W3(
 	bLightImpulsRelais=> bRelaisLight_W3,
 	bLightNormalRelais=> );
 
+//Licht Koele berging
 fbOnOffLight_W4(
 	bSwitch:= bSwitchLight_W4,
 	bOn:= ,

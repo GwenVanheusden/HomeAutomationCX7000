@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.19" ClassName="CTComPlcObjDef">
-	<Instance TmcHash="{51C81066-B1AE-101D-EB37-B209FAD0C663}">
+	<Instance TmcHash="{9953A36D-3AAB-CC22-A825-10EF9B1D5433}">
 		<Vars VarGrpType="1">
 			<Name>PlcTask Inputs</Name>
 			<Var>
@@ -550,7 +550,7 @@
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_I2</Name>
-				<Comment><![CDATA[ Niet gebruikt, gedimde lamp ]]></Comment>
+				<Comment><![CDATA[ Niet gebruikt. Was Centraalpunt Living ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
@@ -560,7 +560,7 @@
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_I4</Name>
-				<Comment><![CDATA[ Niet aangesloten ]]></Comment>
+				<Comment><![CDATA[ Button+ voeding ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
@@ -580,12 +580,12 @@
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_I8</Name>
-				<Comment><![CDATA[ LED strip ]]></Comment>
+				<Comment><![CDATA[ Nog verwijderen, niet meer in gebruik. Was verlichting led strip boven keukenkast ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_J1</Name>
-				<Comment><![CDATA[ Centraal Slaapkamer 3 ]]></Comment>
+				<Comment><![CDATA[ Niet meer in gebruik. Was centraal Slaapkamer 3 ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
@@ -665,7 +665,7 @@
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_Y4</Name>
-				<Comment><![CDATA[ Niet aangesloten ]]></Comment>
+				<Comment><![CDATA[ Muurverlichting carport ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
@@ -675,7 +675,7 @@
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_Y6</Name>
-				<Comment><![CDATA[ Niet aangesloten ]]></Comment>
+				<Comment><![CDATA[ Robotmaaier stopcontact ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>
@@ -735,7 +735,7 @@
 			</Var>
 			<Var>
 				<Name>GVL_Relais.bRelaisLight_BD8</Name>
-				<Comment><![CDATA[ Spots buitengevel leefruimte ]]></Comment>
+				<Comment><![CDATA[ 2 Spots buitengevel leefruimte op terras ]]></Comment>
 				<Type>BOOL</Type>
 			</Var>
 			<Var>

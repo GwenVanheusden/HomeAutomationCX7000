@@ -32,7 +32,9 @@ P_Watermeting();
 
 P_Ventilatie();
 
-P_Sonos();]]></ST>
+P_IoT_Communicator();
+P_Sonos();
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

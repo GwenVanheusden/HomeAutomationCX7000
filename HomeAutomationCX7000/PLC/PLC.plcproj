@@ -19,6 +19,9 @@
     <LibraryReferences>{f0e08600-e7d1-40a1-9bee-a08e7fb110d9}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\10-IoT\ST_IoT_Communicator.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\01-System\GVL_ADS.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -132,6 +135,9 @@
     <Compile Include="POUs\09-Ventilatie\P_Ventilatie.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\10-IoT\P_IoT_Communicator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\10-IoT\P_Sonos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -150,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\10-IoT" />
     <Folder Include="GVLs" />
     <Folder Include="GVLs\01-System" />
     <Folder Include="GVLs\02-Knoppen" />
@@ -188,6 +195,14 @@
     <PlaceholderReference Include="Tc2_Utilities">
       <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Utilities</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_IotBase">
+      <DefaultResolution>Tc3_IotBase, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_IotBase</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_IotCommunicator">
+      <DefaultResolution>Tc3_IotCommunicator, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_IotCommunicator</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>

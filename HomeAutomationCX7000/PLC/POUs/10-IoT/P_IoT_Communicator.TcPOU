@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="P_IoT_Communicator" Id="{da73f46b-8fa9-4489-86a5-e064ef5ea3a7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_IoT_Communicator
+VAR
+	fbIoT : FB_IotCommunicator := (
+		sHostName := 'k3a60711.ala.eu-central-1.emqxsl.com', 	// MQTT Broker Adress
+		nPort := 8883,                   						// MQTT Port
+		sClientId := 'btn000u5j7t', 
+		sMainTopic := 'Beestenboel',          					// Main Topic
+		sDeviceName := 'btn000u5j7t',  							// Device Name
+		sUser := 'BeckhoffCX7000',            					// MQTT Username
+		sPassword := 'N6u57nyWUtum25v');         				// MQTT Password
+
+	stData	: ST_IoT_Communicator;              				// Values to send
+	timer 	: TON;                         						// Timer to send data
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbIoT.stTls.bNoServerCertCheck := TRUE;
+fbIoT.Execute(TRUE);
+
+timer(IN := NOT timer.Q, PT := T#500MS);
+
+IF fbIoT.bConnected AND timer.Q THEN
+    fbIoT.SendData(ADR(stData), SIZEOF(stData));
+END_IF
+
+stData.rActiefVermogen := P_Kwartierpiek.CurrentActivePower;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

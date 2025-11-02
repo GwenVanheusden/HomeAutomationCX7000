@@ -34,20 +34,15 @@ rtAdsLichtKeukenSpotsDampkap(CLK:=bAdsLichtKeukenSpotsDampkap);
 rtAdsLichtLivingStepUp(CLK:=bAdsLichtLivingStepUp);
 rtAdsLichtLivingStepDown(CLK:=bAdsLichtLivingStepDown);
 
-(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
-bSwitchLight_I3 := bVLight_I3 OR bDK07x3;																	(*Geschakeld Stopcontact hoek Living (K3)*)
-bSwitchLight_I4 := bVLight_I4;																				(*Button+*)
-bSwitchLight_I5 := bVLight_I5 OR bDK04x1 OR bDK05x1 OR bDK07x4 OR bDK03x2 OR rtAdsLichtKeukenCentraal.Q;	(*Licht Kookeiland Centraal*)
-bSwitchLight_I7 := bVLight_I7 OR bDK05x2 OR rtAdsLichtKeukenSpotsDampkap.Q;									(*Licht Spots Dampkap*)
+bSwitchLight_I3 := bVLight_I3 OR bDK07x3;																	//Geschakeld Stopcontact hoek Living (K3)
+bSwitchLight_I4 := bVLight_I4;																				//Button+ Altijd aan
+bSwitchLight_I5 := bVLight_I5 OR bDK04x1 OR bDK05x1 OR bDK07x4 OR bDK03x2 OR rtAdsLichtKeukenCentraal.Q;	//Licht Kookeiland Centraal
+bSwitchLight_I7 := bVLight_I7 OR bDK05x2 OR rtAdsLichtKeukenSpotsDampkap.Q;									//Licht Spots Dampkap
 
-(* Aanwezigheid *)
-IF bNovRamLight_I3 OR bNovRamLight_I4 OR bNovRamLight_I5 OR bNovRamLight_I7 OR fbDimmer_I2.bLight THEN
-	bAanwezigKeukenLiving := TRUE;
-ELSE
-	bAanwezigKeukenLiving := FALSE;
-END_IF
+//Aanwezigheid
+bAanwezigKeukenLiving := bNovRamLight_I3 OR bNovRamLight_I4 OR bNovRamLight_I5 OR bNovRamLight_I7 OR fbDimmer_I2.bLight;
 
-(* Living en Keuken Aan/Uit verlichting*)
+//Geschakeld Stopcontact hoek Living (K3)
 fbOnOffLight_I3(
 	bSwitch:= bSwitchLight_I3,
 	bOn:= ,
@@ -57,6 +52,7 @@ fbOnOffLight_I3(
 	bLightNovRam:= bNovRamLight_I3,
 	bLightImpulsRelais=> bRelaisLight_I3);
 
+//Licht Kookeiland Centraal
 fbOnOffLight_I5(
 	bSwitch:= bSwitchLight_I5 ,
 	bOn:= (* OR (P_Doors.ftContactSchuifdeurLeefruimte.Q AND bZonOnder AND NOT bAanwezigKeukenLiving)*),
@@ -66,6 +62,7 @@ fbOnOffLight_I5(
 	bLightNovRam:= bNovRamLight_I5,
 	bLightImpulsRelais=> bRelaisLight_I5);
 
+//Licht Spots Dampkap
 fbOnOffLight_I7(
 	bSwitch:= bSwitchLight_I7,
 	bOn:= ,
@@ -76,8 +73,8 @@ fbOnOffLight_I7(
 	bLightImpulsRelais=> bRelaisLight_I7);
 
 
-(* Dimmers *)
-bDimLightUp_I2 := bVLight_I2 OR bDK07x1;											(*Licht Living Centraal*)
+//Dimmer Living centraal
+bDimLightUp_I2 := bVLight_I2 OR bDK07x1;
 bDimLightDn_I2 := bDK07x2;
 
 fbDimmer_I2(

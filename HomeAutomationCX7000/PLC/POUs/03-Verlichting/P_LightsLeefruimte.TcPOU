@@ -20,11 +20,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bSwitchLight_Y1 := bVLight_Y1 OR bDK09x3;						(*Leefruimte Spots Barkast*)
-bSwitchLight_Y2 := bVLight_Y2 OR bDK09x1 OR bDK10x1 OR bDK04x2;	(*Leefruimte Centraal eettafel*)
-bSwitchLight_Y3 := bVLight_Y3 OR bDK09x2;						(*Leefruimte Spots zithoek*)
+      <ST><![CDATA[
+bSwitchLight_Y1 := bVLight_Y1 OR bDK09x3;						//Leefruimte Spots Barkast
+bSwitchLight_Y2 := bVLight_Y2 OR bDK09x1 OR bDK10x1 OR bDK04x2;	//Leefruimte Centraal eettafel
+bSwitchLight_Y3 := bVLight_Y3 OR bDK09x2;						//Leefruimte Spots zithoek
 
-
+//Leefruimte Spots Barkast
 fbOnOffLight_Y1(
 	bSwitch:= bSwitchLight_Y1,
 	bOn:= ,
@@ -34,6 +35,7 @@ fbOnOffLight_Y1(
 	bLightNovRam:= bNovRamLight_Y1,
 	bLightImpulsRelais=> bRelaisLight_Y1);
 
+//Leefruimte Centraal eettafel
 fbOnOffLight_Y2(
 	bSwitch:= bSwitchLight_Y2,
 	bOn:= ,
@@ -43,6 +45,7 @@ fbOnOffLight_Y2(
 	bLightNovRam:= bNovRamLight_Y2,
 	bLightImpulsRelais=> bRelaisLight_Y2);
 
+//Leefruimte Spots zithoek
 fbOnOffLight_Y3(
 	bSwitch:= bSwitchLight_Y3,
 	bOn:= ,
@@ -52,8 +55,7 @@ fbOnOffLight_Y3(
 	bLightNovRam:= bNovRamLight_Y3,
 	bLightImpulsRelais=> bRelaisLight_Y3);
 
-
-(* Up/Down spots muur leefruimte *)
+//Up/Down spots muur leefruimte
 fbOnOffLight_Y5(
 	bSwitch:= ,
 	bOn:= P_SunriseSunset.bSunsetPulse,

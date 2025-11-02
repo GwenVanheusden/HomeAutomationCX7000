@@ -13,13 +13,13 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(* Voeg schakelaars to om bijhorende lamp te kunnen bedienen.*)
-(* Hal en Traphal *)
-bSwitchLight_I1 := bVLight_I1 OR bDK08x1;													(*Licht Hal*)
-bSwitchLight_J5 := bVLight_J5 OR bDK08x3 OR bDK11x1 OR bDK14x3;							(*Licht Spots Traphal plafond*)
-bSwitchLight_J6 := bVLight_J6 OR bDK08x2;												(*Licht Spots Traphal wand*)
+      <ST><![CDATA[
+//Hal en Traphal
+bSwitchLight_I1 := bVLight_I1 OR bDK08x1;								//Licht Hal
+bSwitchLight_J5 := bVLight_J5 OR bDK08x3 OR bDK11x1 OR bDK14x3;			//Licht Spots Traphal plafond
+bSwitchLight_J6 := bVLight_J6 OR bDK08x2;								//Licht Spots Traphal wand
 
-(* Hal en Traphal *)
+//Licht Hal
 fbOnOffLight_I1(
 	bSwitch:= bSwitchLight_I1,
 	(*bOn:=  (P_Doors.ftContactVoordeur.Q AND bZonOnder),*)
@@ -29,6 +29,7 @@ fbOnOffLight_I1(
 	bLightNovRam:= bNovRamLight_I1,
 	bLightImpulsRelais=> bRelaisLight_I1);
 
+//Licht Spots Traphal plafond
 fbOnOffLight_J5(
 	bSwitch:= bSwitchLight_J5,
 	bOn:= ,
@@ -38,6 +39,7 @@ fbOnOffLight_J5(
 	bLightNovRam:= bNovRamLight_J5,
 	bLightImpulsRelais=> bRelaisLight_J5);
 
+//Licht Spots Traphal wand
 fbOnOffLight_J6(
 	bSwitch:= bSwitchLight_J6,
 	bOn:= P_SunriseSunset.bSunsetPulse,
